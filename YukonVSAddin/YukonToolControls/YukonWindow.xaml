@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="YukonToolControls.YukonWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c="clr-namespace:YukonToolControls"
+             mc:Ignorable="d" Height="Auto" Width="Auto" VerticalAlignment="Stretch" MinWidth="250" MinHeight="250" VerticalContentAlignment="Stretch" d:DesignHeight="419" d:DesignWidth="300">
+    <Grid MinWidth="250" MinHeight="250" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsManipulationEnabled="False" ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="222*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="197*" />
+        </Grid.RowDefinitions>
+        <ListBox Margin="0,40,0,0" Name="lstNotifications" VerticalContentAlignment="Center" Width="Auto" SelectionChanged="lstNotifications_SelectionChanged" Panel.ZIndex="1" Grid.Row="0" />
+        <Label Content="Since last update" Height="30" HorizontalAlignment="Left" Name="lblSinceLastUpdate" VerticalAlignment="Top" Width="107" Margin="0,11,0,0" Panel.ZIndex="1" FontSize="13" FontWeight="Normal" FontFamily="Segoe UI" FontStretch="Expanded" FontStyle="Italic" Grid.Row="0" />
+        <Button Content="Use Cases" Height="Auto" Margin="133,12,0,0" Name="btnUseCases" VerticalAlignment="Top" Panel.ZIndex="1" HorizontalAlignment="Left" Width="75" Grid.Row="0" />
+        <Button Content="Configure" Height="Auto" Margin="214,12,0,0" Name="btnConfigure" VerticalAlignment="Top" Panel.ZIndex="1" HorizontalAlignment="Left" Width="75" Grid.Row="0" />
+        <Rectangle Height="31" HorizontalAlignment="Left" Margin="0,10,0,0" Name="rectSinceLastUpdate" Stroke="{x:Null}" VerticalAlignment="Top" Width="107" Fill="#FFAED6F2" Grid.Row="0" />
+        <GridSplitter ResizeDirection="Rows" Width="Auto" Height ="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Grid.Row="1" />
+        <TreeView Name="trvCallGraphPath" MaxHeight="Infinity" SelectedItemChanged="trvCallGraphPath_SelectedItemChanged" Panel.ZIndex="1" Grid.Row="2" />
+    </Grid>
+</UserControl>
