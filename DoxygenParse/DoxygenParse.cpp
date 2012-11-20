@@ -17,6 +17,8 @@ using std::enable_shared_from_this;
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
 
+#include "DoxygenParse.h"
+
 void printUsageAndExit(int exitCondition)
 {
     exit(exitCondition);

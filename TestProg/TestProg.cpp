@@ -15,6 +15,11 @@ int overloaded(int i, int j)
     return i + j;
 }
 
+int test2(int i, int j)
+{
+    return i + j;
+}
+
 int main(int argc, char** argv)
 {
     int first = 1;
@@ -22,11 +27,13 @@ int main(int argc, char** argv)
 
     int third = overloaded(first);
     int fourth = overloaded(third, second);
+    int fifth = test2(first, second);
 
     cout << "first: " << first << endl;
     cout << "second: " << second << endl;
     cout << "third: " << third << endl;
     cout << "fourth: " << fourth << endl;
+    cout << "fifth: " << fifth << endl;
 }
 
 
