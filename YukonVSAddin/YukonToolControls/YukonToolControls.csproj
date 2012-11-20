@@ -62,7 +62,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="YukonNotificationList.cs" />
+    <Compile Include="YukonOutput.cs" />
+    <Compile Include="YukonInput.cs" />
     <Compile Include="YukonWindow.xaml.cs">
       <DependentUpon>YukonWindow.xaml</DependentUpon>
     </Compile>

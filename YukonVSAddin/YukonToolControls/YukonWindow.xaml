@@ -5,18 +5,44 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:c="clr-namespace:YukonToolControls"
              mc:Ignorable="d" Height="Auto" Width="Auto" VerticalAlignment="Stretch" MinWidth="250" MinHeight="250" VerticalContentAlignment="Stretch" d:DesignHeight="419" d:DesignWidth="300">
-    <Grid MinWidth="250" MinHeight="250" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsManipulationEnabled="False" ShowGridLines="False">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="222*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="197*" />
-        </Grid.RowDefinitions>
-        <ListBox Margin="0,40,0,0" Name="lstNotifications" VerticalContentAlignment="Center" Width="Auto" SelectionChanged="lstNotifications_SelectionChanged" Panel.ZIndex="1" Grid.Row="0" />
-        <Label Content="Since last update" Height="30" HorizontalAlignment="Left" Name="lblSinceLastUpdate" VerticalAlignment="Top" Width="107" Margin="0,11,0,0" Panel.ZIndex="1" FontSize="13" FontWeight="Normal" FontFamily="Segoe UI" FontStretch="Expanded" FontStyle="Italic" Grid.Row="0" />
-        <Button Content="Use Cases" Height="Auto" Margin="133,12,0,0" Name="btnUseCases" VerticalAlignment="Top" Panel.ZIndex="1" HorizontalAlignment="Left" Width="75" Grid.Row="0" />
-        <Button Content="Configure" Height="Auto" Margin="214,12,0,0" Name="btnConfigure" VerticalAlignment="Top" Panel.ZIndex="1" HorizontalAlignment="Left" Width="75" Grid.Row="0" />
-        <Rectangle Height="31" HorizontalAlignment="Left" Margin="0,10,0,0" Name="rectSinceLastUpdate" Stroke="{x:Null}" VerticalAlignment="Top" Width="107" Fill="#FFAED6F2" Grid.Row="0" />
-        <GridSplitter ResizeDirection="Rows" Width="Auto" Height ="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Grid.Row="1" />
-        <TreeView Name="trvCallGraphPath" MaxHeight="Infinity" SelectedItemChanged="trvCallGraphPath_SelectedItemChanged" Panel.ZIndex="1" Grid.Row="2" />
-    </Grid>
+    <TabControl MinWidth="250" MinHeight="250" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsManipulationEnabled="False" Name="tbcYukon" SelectionChanged="tbcYukon_SelectionChanged" >
+        <TabItem Header="Since Last Update..." Name="tbiSinceLastUpdate" Foreground="Blue">
+            <Grid MinWidth="250" MinHeight="250" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsManipulationEnabled="False" ShowGridLines="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="222*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="197*" />
+                </Grid.RowDefinitions>
+                <ListBox Name="lstNotifications" VerticalContentAlignment="Center" Width="Auto" SelectionChanged="lstNotifications_SelectionChanged" Panel.ZIndex="1" Grid.Row="0" ItemsSource="{Binding}" />
+                <GridSplitter ResizeDirection="Rows" Width="Auto" Height ="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Grid.Row="1" />
+                <TreeView Name="trvCallGraphPath" MaxHeight="Infinity" SelectedItemChanged="trvCallGraphPath_SelectedItemChanged" Panel.ZIndex="1" Grid.Row="2" />
+            </Grid>
+        </TabItem>
+        <TabItem Header="Use Cases" Name="tbiUseCases">
+            <Grid MinWidth="250" MinHeight="250" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsManipulationEnabled="False" ShowGridLines="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="170*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="250*" />
+                </Grid.RowDefinitions>
+                <ListBox Name="lstUseCases" VerticalContentAlignment="Center" Width="Auto" Panel.ZIndex="1" Margin="0,0,0,3" Grid.RowSpan="2" SelectionChanged="lstUseCases_SelectionChanged" />
+                <GridSplitter ResizeDirection="Rows" Width="Auto" Height ="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Grid.Row="1" />
+                <Button Content="Create New" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="20,10,0,0" Name="btnCreateNew" VerticalAlignment="Top" Width="75" Click="btnCreateNew_Click" />
+                <Button Content="Delete" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="115,10,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnDelete_Click" />
+                <Label Grid.Row="2" Content="Name:" Height="33" Margin="6,46,0,0" Name="lblUseCaseName" VerticalAlignment="Top" HorizontalAlignment="Left" Width="278" />
+                <TextBox Grid.Row="2" Margin="51,48,0,0" Name="txtUseCaseName" HorizontalAlignment="Left" Width="233" Height="25" VerticalAlignment="Top" Text="" TextChanged="txtUseCaseName_TextChanged" />
+                <Label Grid.Row="2" Content="Methods:" Height="33" Margin="6,76,0,0" Name="lblUseCaseMethods" VerticalAlignment="Top" HorizontalAlignment="Left" Width="278" />
+                <ListBox Grid.Row="2" Height="109" HorizontalAlignment="Left" Margin="66,77,0,0" Name="lstUseCaseMethods" VerticalAlignment="Top" Width="218" SelectionChanged="lstUseCaseMethods_SelectionChanged" />
+                <Button Content="++" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="66,191,0,0" Name="btnAddMethod" VerticalAlignment="Top" Width="29" FontWeight="Bold" FontSize="14" Padding="1" FontFamily="Segoe UI" Foreground="Blue" Click="btnAddMethod_Click" />
+                <Button Content="X" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="101,191,0,0" Name="btnRemoveMethod" VerticalAlignment="Top" Width="29" FontSize="14" FontWeight="Bold" Foreground="Red" Click="btnRemoveMethod_Click" />
+                <TextBox Grid.Row="2" Margin="136,190,0,0" Name="txtMethodSig" HorizontalAlignment="Left" Width="148" Height="25" VerticalAlignment="Top" Text="" TextChanged="txtMethodSig_TextChanged" />
+            </Grid>
+        </TabItem>
+        <TabItem Header="Configure" Name="tbiConfigure">
+            <Grid MinWidth="250" MinHeight="250" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsManipulationEnabled="False" ShowGridLines="False">
+                <Label Content="Project Directory (location of .git subdirectory):" Height="33" Margin="6,6,0,0" Name="label1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="278" />
+                <TextBox Margin="6,32,0,0" Name="txtProjDir" HorizontalAlignment="Left" Width="278" Height="25" VerticalAlignment="Top" Text="" TextChanged="txtProjDir_TextChanged" />
+            </Grid>
+        </TabItem>
+    </TabControl>
 </UserControl>
