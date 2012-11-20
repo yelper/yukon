@@ -42,11 +42,8 @@ namespace YukonToolControls
             input = new YukonInput();
 
             // TODO: remove this
-            output.UseCaseNotifications.Add(new UseCaseNotification("Use case 'Create New File' may be affected by change in method FileIO::openFile()", "MainWindow::btnOpen_Click()->FileManager::openFile()->FileIO::openFile()"));
-            output.UseCaseNotifications.Add(new UseCaseNotification("Use case 'Save Current File' may be affected by change in method FileIO::openFile()", "MainWindow::btnSave_Click()->FileManager::saveFile()->FileIO::openFile()"));
-            output.UseCaseNotifications.Add(new UseCaseNotification("Use case 'Exit Application' may be affected by change in method MainWindow::btnExit_Click()", "MainWindow::btnExit_Click()"));
-            output.UseCaseNotifications.Add(new UseCaseNotification("Use case 'Exit Application' may be affected by change in method FileIO::openFile()", "MainWindow::btnExit_Click()->FileManager::saveFile()->FileIO::openFile()"));
-            output.UseCaseNotifications.Add(new UseCaseNotification("ERROR: Use case 'Save All Files' is missing method MainWindow::btnSaveAll_Click()", ""));
+            output.UseCaseNotifications.Add(new UseCaseNotification("Create New File", "void FileIO::openFile(string)", "FileIO.cpp", 78, "MainWindow::btnOpen_Click(Object,EventArgs)->FileManager::openFile(string)->FileIO::openFile(string)"));
+            output.UseCaseNotifications.Add(new UseCaseNotification("Create New File", "void FileIO::btnOpen_Click(Object,EventArgs)", "MainWindow.cpp", 219, "MainWindow::btnOpen_Click(Object,EventArgs)"));
             //
             /*// TODO: move this elsewhere
             ListBox lst = (ListBox)FindName("lstNotifications");
@@ -67,9 +64,8 @@ namespace YukonToolControls
                 {
                     input.ReadXML(path);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    path = path;
                 }
 
                 PopulateUseCaseList();

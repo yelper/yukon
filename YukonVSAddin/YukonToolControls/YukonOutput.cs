@@ -31,18 +31,40 @@ namespace YukonToolControls
 
     public class UseCaseNotification
     {
-        private string codeChange;
+        private string useCase;
+        private string method;
+        private string codeFile;
+        private int codeLine;
         private string callGraphPath;
 
-        public UseCaseNotification(string codeChange, string callGraphPath)
+        public UseCaseNotification(string useCase, string method,
+            string codeFile, int codeLine, string callGraphPath)
         {
-            this.codeChange = codeChange;
+            this.useCase = useCase;
+            this.method = method;
+            this.codeFile = codeFile;
+            this.codeLine = codeLine;
             this.callGraphPath = callGraphPath;
         }
 
-        public string CodeChange
+        public string UseCase
         {
-            get { return codeChange; }
+            get { return useCase; }
+        }
+
+        public string Method
+        {
+            get { return method; }
+        }
+
+        public string CodeFile
+        {
+            get { return codeFile; }
+        }
+
+        public int CodeLine
+        {
+            get { return codeLine; }
         }
 
         public string[] CallGraphPath
@@ -56,7 +78,8 @@ namespace YukonToolControls
 
         public override string ToString()
         {
-            return codeChange + "\n" + callGraphPath;
+            return "Use case '" + useCase + "' may be affected by change in method " + method +
+                " in " + codeFile + ", " + codeLine + ".";
         }
     }
 }
