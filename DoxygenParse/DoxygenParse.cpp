@@ -16,6 +16,8 @@ using std::enable_shared_from_this;
 
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/filesystem.hpp>
+#include <boost/regex.hpp>
 
 #include "DoxygenParse.h"
 
@@ -72,6 +74,68 @@ vector<vector<int> > parseCallGraph(string filename, map<string, string> &names)
 
 
     return graph;
+}
+
+void parseFunctionHeaders(string codeDir, vector<string> &files, map<pair<int, int>, string> &lines)
+{
+	// get a list of all code files in the codeDir, this'll involve looking at all *.cpp files
+	files.clear();
+	boost::filesystem::directory_iterator end_itr;
+	for (boost::filesystem::directory_iterator i(codeDir); i != end_itr; ++i)
+	{	
+		// skip non-files (e.g. ".." or directories)
+		if (!boost::filesystem::is_regular_file(i->status()))
+			continue;
+		
+		if (i->path().extension() == ".cpp")
+			files.push_back(i->path().string());
+	}
+
+	// iterate through the code files
+	for (int i = 0; i < (int)files.size(); i++)
+	{
+		// read the file into a vector (each entry is a line)
+		ifstream f(files[i].c_str());
+		if (!f.is_open())
+			cerr << "Unable to open found code file: " << files[i] << endl;
+		
+		string line;
+		int lineNum = 0;
+		int numOpenBrackets = 0;
+		bool inAFunction = false;
+		
+		string::iterator it;
+		while (f.good())
+		{
+			getline(f, line);
+			++lineNum;
+
+			// if in a function, iterate until we get back to net zero { } and record end number
+			if (inAFunction) {
+				numOpenBrackets += count(line.begin(), line.end(), '{');
+				numOpenBrackets -= count(line.begin(), line.end(), '}');
+
+				// if we're closing this function out, add the ranges here
+				if (numOpenBrackets == 0)
+				{
+					// TODO: add function information here
+				}
+
+			} else { // test if this line looks like a function header
+				// TODO: get a regex that is reasonable (e.g. all on one line, or parameters on multi-line (count parentheses))
+			}
+
+			if (numOpenBrackets < 0) // should never get here
+			{
+				cerr << "Got " << numOpenBrackets << " open brackets on line " << lineNum << "... aborting." << endl;
+				break;
+			}
+			
+			if (numOpenBrackets == 0)
+				inAFunction = false;
+		}
+	}
+
 }
 
 int main(int argc, char** argv)
