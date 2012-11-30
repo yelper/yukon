@@ -198,8 +198,23 @@ int main(int argc, char** argv)
         printUsageAndExit(-1);
     
     string fname = argv[1];
+
+    /* for testing the parseFunctionHeaders functionality
+       Example: DoxygenParse U:\classes\cs706\yukon\TestProg
+    */
+    vector<string> files;
+    map<pair<int, int>, string> lines;
+    parseFunctionHeaders(fname, files, lines);
+
+    map<pair<int, int>, string>::iterator it;
+    for (it = lines.begin(); it != lines.end(); it++)
+    {
+        cout << "Lines " << it->first.first << "-" << it->first.second << ": " << it->second << endl;
+    }
     
     /* for testing the parseCallGraph functionality
+
+    Example: DoxygenParse U:\classes\cs706\yukon\TestProg\doc\html\_test_prog_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.dot
     
     map<string, string> names;
     vector<vector<int> > graph = parseCallGraph(fname, names);
@@ -212,16 +227,6 @@ int main(int argc, char** argv)
         }
         cout << endl;
     } */
-
-    vector<string> files;
-    map<pair<int, int>, string> lines;
-    parseFunctionHeaders(fname, files, lines);
-
-    map<pair<int, int>, string>::iterator it;
-    for (it = lines.begin(); it != lines.end(); it++)
-    {
-        cout << "Lines " << it->first.first << "-" << it->first.second << ": " << it->second << endl;
-    }
 
     return 0;
 }
