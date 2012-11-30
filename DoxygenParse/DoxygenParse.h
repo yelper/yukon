@@ -11,4 +11,4 @@ public:
     void parseFunctionHeaders(string codeDir, vector<string> &files, map<pair<int, int>, string> &lines);
 private:
     void printUsageAndExit(int exitCondition);
-}
+};

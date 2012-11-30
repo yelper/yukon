@@ -91,6 +91,40 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<pair<int, i
             files.push_back(i->path().string());
     }
 
+    // TODO: handle double-templated+ datatypes (match "vector<vector<int> >" as a valid datatype)
+    // TODO: handle const, static, etc. keywords :(
+    // string plusParamRegex = "^[^\s]+\s+[^\s]+\s*\((\s*[^\s]+\s+[^\s]+)*\s*\)\s*\{";  // only handles zero or one parameters
+                
+    // explanation of below regex:
+    // ^  head of string
+    //  [^\s]+  match return data type
+    //        \s+  space after data type
+    //           [^\s]+ match function name
+    //                 \s*  match any space between name and open parenthesis
+    //                    \(  open paren
+    //                      \s*  match any space between open paren and first parameter
+    //                         (                                       )*  optional function parameters
+    //                          [^\s]+  first parameter datatype
+    //                                \s+  space between datatype and name
+    //                                   [^\s,]+  first parameter name
+    //                                          (                    )*  optional additional parameters
+    //                                           ,                       match separating comma
+    //                                            \s*                    match some space 
+    //                                               [^\s]+              match parameter datatype
+    //                                                     \s+           match space between datatype and name
+    //                                                        [^\s,]+    match parameter name
+    //                                                                   \s*  match any space before close paren
+    //                                                                      \)  close paren
+    //                                                                        \s* match any space after close paren
+    //                                                                           \{  match opening bracket
+    // ^[^\s]+\s+[^\s]+\s*\(\s*([^\s]+\s+[^\s,]+(,\s*[^\s]+\s+[^\s,]+)*)*\s*\)\s*\{
+
+    string funcRegex = "^\\s*[^\\s]+\\s+[^\\s]+\\s*\\(\\s*([^\\s]+\\s+[^\\s,]+(,\\s*[^\\s]+\\s+[^\\s,]+)*)*\\s*\\)\\s*";
+    boost::regex funcHeader(funcRegex);
+
+    string funcStart = "^[^\\s]+\\s+[^\\s]+\\s*\\(";
+    boost::regex funcPartial(funcStart);
+
     // iterate through the code files
     for (int i = 0; i < (int)files.size(); i++)
     {
@@ -101,8 +135,10 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<pair<int, i
         
         string line;
         int lineNum = 0;
+        int startFunc = -1;
         int numOpenBrackets = 0;
         bool inAFunction = false;
+        bool inAFunctionHeader = false;
         
         string::iterator it;
         while (f.good())
@@ -119,10 +155,31 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<pair<int, i
                 if (numOpenBrackets == 0)
                 {
                     // TODO: add function information here
+                    lines[pair<int, int>(startFunc, lineNum)] = "testfunc";
+                    inAFunction = false;
+                    startFunc = -1;
                 }
 
-            } else { // test if this line looks like a function header
-                // TODO: get a regex that is reasonable (e.g. all on one line, or parameters on multi-line (count parentheses))
+            } else if (!inAFunctionHeader) { // test if this line looks like a function header
+                if (boost::regex_match(line, funcHeader)) 
+                {
+                    inAFunction = true;
+                    numOpenBrackets += count(line.begin(), line.end(), '{');
+                    startFunc = lineNum;
+                } 
+                else if (boost::regex_match(line, funcPartial))
+                    inAFunctionHeader = true;
+
+            } else { // inAFunctionHeader
+                
+                // wait until a opening curly brace
+                numOpenBrackets = count(line.begin(), line.end(), '{');
+                if (numOpenBrackets > 0)
+                {
+                    startFunc = lineNum;
+                    inAFunction = true;
+                    inAFunctionHeader = false;
+                }
             }
 
             if (numOpenBrackets < 0) // should never get here
@@ -130,9 +187,6 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<pair<int, i
                 cerr << "Got " << numOpenBrackets << " open brackets on line " << lineNum << "... aborting." << endl;
                 break;
             }
-            
-            if (numOpenBrackets == 0)
-                inAFunction = false;
         }
     }
 
@@ -144,6 +198,9 @@ int main(int argc, char** argv)
         printUsageAndExit(-1);
     
     string fname = argv[1];
+    
+    /* for testing the parseCallGraph functionality
+    
     map<string, string> names;
     vector<vector<int> > graph = parseCallGraph(fname, names);
 
@@ -154,6 +211,16 @@ int main(int argc, char** argv)
             cout << graph[i][j] << " ";
         }
         cout << endl;
+    } */
+
+    vector<string> files;
+    map<pair<int, int>, string> lines;
+    parseFunctionHeaders(fname, files, lines);
+
+    map<pair<int, int>, string>::iterator it;
+    for (it = lines.begin(); it != lines.end(); it++)
+    {
+        cout << "Lines " << it->first.first << "-" << it->first.second << ": " << it->second << endl;
     }
 
     return 0;
