@@ -21,6 +21,17 @@ using std::enable_shared_from_this;
 
 #include "DoxygenParse.h"
 
+
+struct fileinfo_t {
+    string filename;
+    int start;
+    int end;
+
+    bool operator<(const fileinfo_t &n) const {
+        return this->start < n.start;
+    }
+};
+
 void printUsageAndExit(int exitCondition)
 {
     exit(exitCondition);
@@ -76,10 +87,11 @@ vector<vector<int> > parseCallGraph(string filename, map<string, string> &names)
     return graph;
 }
 
-void parseFunctionHeaders(string codeDir, vector<string> &files, map<pair<int, int>, string> &lines)
+void parseFunctionHeaders(string codeDir, vector<string> &files, map<fileinfo_t, string> &lines)
 {
     // get a list of all code files in the codeDir, this'll involve looking at all *.cpp files
     files.clear();
+    lines.clear();
     boost::filesystem::directory_iterator end_itr;
     for (boost::filesystem::directory_iterator i(codeDir); i != end_itr; ++i)
     {
@@ -119,7 +131,7 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<pair<int, i
     //                                                                           \{  match opening bracket
     // ^[^\s]+\s+[^\s]+\s*\(\s*([^\s]+\s+[^\s,]+(,\s*[^\s]+\s+[^\s,]+)*)*\s*\)\s*\{
 
-    string funcRegex = "^\\s*[^\\s]+\\s+[^\\s]+\\s*\\(\\s*([^\\s]+\\s+[^\\s,]+(,\\s*[^\\s]+\\s+[^\\s,]+)*)*\\s*\\)\\s*";
+    string funcRegex = "^\\s*[^\\s]+\\s+([^\\s]+)\\s*\\(\\s*([^\\s]+\\s+[^\\s,]+(,\\s*[^\\s]+\\s+[^\\s,]+)*)*\\s*\\)\\s*";
     boost::regex funcHeader(funcRegex);
 
     string funcStart = "^[^\\s]+\\s+[^\\s]+\\s*\\(";
@@ -136,6 +148,10 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<pair<int, i
         string line;
         int lineNum = 0;
         int startFunc = -1;
+        
+        string curFunc;
+        string curFile = files[i].substr(codeDir.length() + 1, files[i].length() - codeDir.length());
+
         int numOpenBrackets = 0;
         bool inAFunction = false;
         bool inAFunctionHeader = false;
@@ -155,14 +171,28 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<pair<int, i
                 if (numOpenBrackets == 0)
                 {
                     // TODO: add function information here
-                    lines[pair<int, int>(startFunc, lineNum)] = "testfunc";
+                    fileinfo_t info;
+                    info.filename = curFile;
+                    info.start = startFunc;
+                    info.end = lineNum;
+
+                    lines[info] = curFunc;
                     inAFunction = false;
                     startFunc = -1;
                 }
 
-            } else if (!inAFunctionHeader) { // test if this line looks like a function header
-                if (boost::regex_match(line, funcHeader)) 
+            } else if (!inAFunctionHeader) { 
+                // test if this line looks like a function header
+                boost::cmatch matches;                
+                
+                if (boost::regex_match(line.c_str(), matches, funcHeader)) 
                 {
+                    /* some information about the matches
+                    for (int k = 0; k < matches.size(); k++)
+                        cout << "matches[" << k << "] = " << matches[k].str() << endl;
+                    */
+
+                    curFunc = matches[1].str();
                     inAFunction = true;
                     numOpenBrackets += count(line.begin(), line.end(), '{');
                     startFunc = lineNum;
@@ -203,13 +233,20 @@ int main(int argc, char** argv)
        Example: DoxygenParse U:\classes\cs706\yukon\TestProg
     */
     vector<string> files;
-    map<pair<int, int>, string> lines;
+    map<fileinfo_t, string> lines;
     parseFunctionHeaders(fname, files, lines);
 
-    map<pair<int, int>, string>::iterator it;
+    map<fileinfo_t, string>::iterator it;
     for (it = lines.begin(); it != lines.end(); it++)
     {
-        cout << "Lines " << it->first.first << "-" << it->first.second << ": " << it->second << endl;
+        cout << "File " << it->first.filename << "[" << it->first.start << ":" << it->first.end << "] " << it->second << endl;
+    }
+
+    ofstream f(fname + "/functions.txt");
+    if (f.is_open())
+    {
+        for (it = lines.begin(); it != lines.end(); it++)
+            f << it->first.filename << " " << it->first.start << "-" << it->first.end << " " << it->second << endl;
     }
     
     /* for testing the parseCallGraph functionality
