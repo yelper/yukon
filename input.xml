@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-16"?>
+<yukonConfig>
+  <projectDirectory>blah</projectDirectory>
+  <useCases>
+    <useCase>
+      <name>Test Use Case</name>
+      <methods>
+        <method>int TestProg.cpp::main(int argc, char** argv)</method>
+      </methods>
+    </useCase>
+	<useCase>
+      <name>Test Use Case 2</name>
+      <methods>
+        <method>int TestProg.cpp::test2(int argc, char** argv)</method>
+      </methods>
+    </useCase>
+  </useCases>
+</yukonConfig>

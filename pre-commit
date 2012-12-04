@@ -1,9 +1,4 @@
 #!/bin/sh
-#
-# An example hook script that is called after a successful
-# commit is made.
-#
-# To enable this hook, rename this file to "post-commit".
 
 rm -rf diff.txt
 rm -rf modified
@@ -42,7 +37,6 @@ do
 		fi
 		strindex "$line" "+"
 		cutline=${line:$index+1:${#line}-$index}
-		#cutline=${cutline:$index+2:${#cutline}-$index}
 		strindex "$cutline" ","
 		if [ $index -lt 0 ]; then
 			strindex "$cutline" " "
@@ -62,3 +56,113 @@ do
 done <diff.txt 
 
 rm -rf diff.txt
+
+if [[ -f useCasesAffected.txt ]]; then
+	rm -rf useCasesAffected.txt
+fi
+
+methods=0
+while read line
+do
+	if [[ "$line" == *"<useCase>"* ]]; then
+		read line
+		strindex "$line" "<name>"
+		index1=$((index+6))
+		strindex "$line" "</name>"
+		index2=$index
+		useCaseName=${line:$index1:$index2-$index1}
+	elif [[ "$line" == *"<method>"* ]]; then
+		strindex "$line" "<method>"
+		index1=$((index+8))
+		strindex "$line" "</method>"
+		index2=$index
+		methodSig=${line:$index1:$index2-$index1}
+		strindex "$methodSig" "::"
+		index1=$((index+2))
+		strindex "$methodSig" "("
+		methodName=${methodSig:$index1:$index-$index1}
+		strindex "$methodSig" " "
+		index1=$((index+1))
+		strindex "$methodSig" "::"
+		fileName=${methodSig:$index1:$index-$index1}
+		array[$methods]="$useCaseName:$fileName:$methodName"
+		methods=$methods+1
+	fi
+done <input.xml
+
+modCount=0
+while read line
+do
+	if [[ -z "$line" ]]; then
+		read line
+		fileName=$line
+	else
+		strindex "$line" ","
+		modStart=${line:0:$index}
+		modFin=${line:$index+1:${#line}-$index}
+		while read line
+		do
+			if [[ "$line" == "$fileName"* ]]; then
+				strindex "$line" " "
+				space=$index
+				strindex "$line" "-"
+				dash=$index
+				metStart=${line:$space+1:$dash-$space-1}
+				cutline=${line:$dash+1:${#line}-$dash}
+				strindex "$cutline" " "
+				space=$index
+				metFin=${cutline:0:$space}
+				methodName=${cutline:$space+1:${#cutline}-$space}
+				if [ $((modStart)) -le $((metStart)) ] && [ $((modFin)) -ge $((metStart)) ]; then
+					modified[modCount]="$fileName:$methodName"
+					modCount=$modCount+1
+				elif [ $((modFin)) -ge $((metFin)) ] && [ $((modStart)) -le $((metFin)) ]; then
+					modified[modCount]="$fileName:$methodName"
+					modCount=$modCount+1
+				elif [ $((metStart)) -le $((modStart)) ] && [ $((metFin)) -ge $((modStart)) ]; then
+					modified[modCount]="$fileName:$methodName"
+					modCount=$modCount+1
+				elif [ $((metFin)) -ge $((modFin)) ] && [ $((metStart)) -le $((modFin)) ]; then
+					modified[modCount]="$fileName:$methodName"
+					modCount=$modCount+1
+				fi
+			fi
+		done <functions.txt
+	fi
+done <modified
+
+modlist=$(echo "${modified[@]}" | sed 's/ /\n/g' | sort -u)
+modlist=$(echo $modlist)
+useCaseCount=0
+strindex "$modlist" " "
+space=$index
+while [ $space -gt 0 ]; do
+	name=${modlist:0:$space+1}
+	name=$(echo $name)
+	modlist=${modlist:$space+1:${#modlist}-$space}
+	strindex "$modlist" " "
+	space=$index
+	for case in "${array[@]}"; do
+		if [[ "$case" == *"$name" ]]; then
+			strindex "$case" ":"
+			casename=${case:0:$index}
+			usecases[$useCaseCount]=$casename
+			useCaseCount=$useCaseCount+1
+		fi
+	done
+done
+name=$(echo $modlist)
+for case in "${array[@]}"; do
+	if [[ "$case" == *"$name" ]]; then
+		strindex "$case" ":"
+		casename=${case:0:$index}
+		usecases[$useCaseCount]=$casename
+		useCaseCount=$useCaseCount+1
+	fi
+done
+
+for usecase in "${usecases[@]}"; do
+	echo $usecase >> useCasesAffected.txt
+done
+
+rm -rf modified
