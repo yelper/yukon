@@ -37,7 +37,7 @@ void printUsageAndExit(int exitCondition)
     exit(exitCondition);
 }
 
-vector<vector<int> > parseCallGraph(string filename, map<string, string> &names)
+vector<vector<int> > parseCallGraph(string filename, vector<string> &names)
 {
     ifstream f(filename.c_str());
     if (!f.is_open())
@@ -62,8 +62,7 @@ vector<vector<int> > parseCallGraph(string filename, map<string, string> &names)
             {
                 string name = parts[1];
                 name = name.substr(8, name.size() - 9);
-                cout << name << endl;
-                names[parts[0]] = name;
+                names.push_back(name);
             }
             
             lines.push_back(parts);
@@ -82,8 +81,7 @@ vector<vector<int> > parseCallGraph(string filename, map<string, string> &names)
             graph[from][to] = 1;
         }
     }
-
-
+    
     return graph;
 }
 
@@ -224,46 +222,87 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<fileinfo_t,
 
 int main(int argc, char** argv)
 {
-    if (argc != 2)
+    if (argc != 3)
         printUsageAndExit(-1);
     
     string fname = argv[1];
+    string func = argv[2];
 
-    /* for testing the parseFunctionHeaders functionality
-       Example: DoxygenParse U:\classes\cs706\yukon\TestProg
-    */
-    vector<string> files;
-    map<fileinfo_t, string> lines;
-    parseFunctionHeaders(fname, files, lines);
+    // for testing the parseFunctionHeaders functionality
+    // Example: DoxygenParse U:\classes\cs706\yukon\TestProg f
+    
+    if (func == "f") {
+        vector<string> files;
+        map<fileinfo_t, string> lines;
+        parseFunctionHeaders(fname, files, lines);
 
-    map<fileinfo_t, string>::iterator it;
-    for (it = lines.begin(); it != lines.end(); it++)
-    {
-        cout << "File " << it->first.filename << "[" << it->first.start << ":" << it->first.end << "] " << it->second << endl;
-    }
-
-    ofstream f(fname + "/functions.txt");
-    if (f.is_open())
-    {
+        map<fileinfo_t, string>::iterator it;
         for (it = lines.begin(); it != lines.end(); it++)
-            f << it->first.filename << " " << it->first.start << "-" << it->first.end << " " << it->second << endl;
+        {
+            cout << "File " << it->first.filename << "[" << it->first.start << ":" << it->first.end << "] " << it->second << endl;
+        }
+
+        ofstream f(fname + "/functions.txt");
+        if (f.is_open())
+        {
+            for (it = lines.begin(); it != lines.end(); it++)
+                f << it->first.filename << " " << it->first.start << "-" << it->first.end << " " << it->second << endl;
+            f << endl;
+        }
     }
     
-    /* for testing the parseCallGraph functionality
-
-    Example: DoxygenParse U:\classes\cs706\yukon\TestProg\doc\html\_test_prog_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.dot
     
-    map<string, string> names;
-    vector<vector<int> > graph = parseCallGraph(fname, names);
-
-    for (int i = 0; i < graph.size(); i++)
+    // for testing the parseCallGraph functionality
+    // Example: DoxygenParse U:\classes\cs706\yukon\TestProg\ g
+    
+    else if (func == "g")    
     {
-        for (int j = 0; j < graph.size(); j++)
+        // assume that the call graphs are in the /html/doc directory
+        boost::filesystem::path proj(fname);
+        proj /= "doc/html";
+
+        if (!boost::filesystem::exists(proj))
         {
-            cout << graph[i][j] << " ";
+            cout << "Unable to find doc/html directory in the given code path." << endl;
+            cerr << "ERROR: Directory " << proj.string() << " not found." << endl;
+            return -1;
         }
-        cout << endl;
-    } */
+
+        // get all *_cgraph.dot files in html doc directory
+        vector<string> cgraphFiles;
+        boost::filesystem::directory_iterator end_itr;
+        for (boost::filesystem::directory_iterator i(proj); i != end_itr; ++i)
+        {
+            // skip non-files (e.g. '..' or directories
+            if (!boost::filesystem::is_regular_file(i->status())) continue;
+
+            if (boost::ends_with(i->path().filename().string(), "_cgraph.dot"))
+                cgraphFiles.push_back(i->path().string());
+        }
+
+        ofstream f(fname + "/graphs.txt");
+        if (f.is_open())
+        {
+            for (int n = 0; n < (int)cgraphFiles.size(); n++) 
+            {
+                vector<string> names;
+                vector<vector<int> > graph = parseCallGraph(cgraphFiles[n], names);
+
+                for (int i = 0; i < graph.size(); i++)
+                {
+                    f << names[i];
+                    for (int j = 0; j < graph.size(); j++)
+                    {
+                        if (i == j) continue; // ignore self-references/recursion for this problem
+                        if (graph[i][j] == 1)
+                            f << " " << names[j];
+                    }
+                    f << endl;
+                }
+                f << endl;
+            }
+        }
+    }
 
     return 0;
 }
