@@ -220,6 +220,30 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<fileinfo_t,
 
 }
 
+void parseAllGraphFiles(vector<string> files) 
+{
+    for (int n = 0; n < (int)files.size(); n++)
+    {
+        vector<string> names;
+        vector<vector<int> > graph = parseCallGraph(files[n], names);
+        
+        vector<vector<string > > callGraphs;
+        for (int i = 0; i < graph.size(); i++)
+        {
+            string thisName = names[i];
+            callGraphs.push_back(vector<string>());
+            for (int j = 0; j < graph.size(); j++) 
+            {
+                if (i == j) continue; // ignore self-references/recursion for this problem
+                if (graph[i][j] == 1)
+                {
+
+                }
+            }
+        }
+    }
+}
+
 int main(int argc, char** argv)
 {
     if (argc != 3)
@@ -303,6 +327,13 @@ int main(int argc, char** argv)
             }
         }
     }
+    
+    // given files of (1) use cases and (2) edited functions, output the (scall graphs for each
+    else if (func == "s")
+    {
+
+    }
+
 
     return 0;
 }
