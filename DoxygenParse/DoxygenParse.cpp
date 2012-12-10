@@ -48,6 +48,28 @@ struct edge {
 
 void printUsageAndExit(int exitCondition)
 {
+    cout << endl;
+    cout << "Usage: DoxygenParse.exe <codeDir> <func> ..." << endl;
+    cout << endl;
+    cout << "  <func> = f     Generate a mapping of line numbers in all code files to " << endl;
+    cout << "                   function names, outputs a file <codeDir>/functions.txt" << endl;
+    cout << "             Ex: DoxygenParse U:\classes\cs706\yukon\TestProg f" << endl << endl;
+    cout << "         = g     Generate a call graph for all *_cgraph.dot files in the" << endl;
+    cout << "                   <codeDir>/doc/html/ directory, default output directory of" << endl;
+    cout << "                   Doxygen HTML output.  Note that .dot files must be specified" << endl;
+    cout << "                   to be retained in the Doxygen config file." << endl;
+    cout << "             Ex: DoxygenParse U:\classes\cs706\yukon\TestProg\ g" << endl << endl;
+    cout << "         = s     Generate a shortest path mapping (if one exists) from all use" << endl;
+    cout << "                   cases to edited function using Dijkstra's algorithm.  Looks" << endl;
+    cout << "                   in <codeDir>/doc/html for call graph dot files, parses a" << endl;
+    cout << "                   use case definition file (see code for format), and parses" << endl;
+    cout << "                   a edited functions file (see code for format); outputs a" << endl;
+    cout << "                   list of use cases and their shortest-path edited function" << endl;
+    cout << "                   call graph." << endl;
+    cout << "             Ex: U:\classes\cs706\yukon\TestProg\ s " << endl;
+    cout << "                   U:\classes\cs706\yukon\TestProg\usecase.txt" << endl;
+    cout << "                   U:\classes\cs706\yukon\TestProg\edited.txt" << endl;
+    cout << endl;
     exit(exitCondition);
 }
 
@@ -380,7 +402,7 @@ int main(int argc, char** argv)
         {
             cout << "Unable to find doc/html directory in the given code path." << endl;
             cerr << "ERROR: Directory " << proj.string() << " not found." << endl;
-            return -1;
+            printUsageAndExit(-1);
         }
 
         vector<string> cgraphFiles;
@@ -428,20 +450,20 @@ int main(int argc, char** argv)
         {
             cout << "Unable to find doc/html directory in the given code path." << endl;
             cerr << "ERROR: Directory " << proj.string() << " not found." << endl;
-            return -1;
+            printUsageAndExit(-1);
         }
 
         if (!boost::filesystem::exists(argv[3]))
         {
             cout << "Unable to find use case definition file.  Aborting." << endl;
             cerr << "ERROR: Use Case file " << argv[3] << " not found." << endl;
-            return -3;
+            printUsageAndExit(-3);
         } 
         if (!boost::filesystem::exists(argv[4]))
         {
             cout << "Unable to find edited functions file.  Aborting." << endl;
             cerr << "ERROR: Edited functions file " << argv[4] << " not found." << endl;
-            return -4;
+            printUsageAndExit(-4);
         }
 
         // get the dot files
@@ -469,12 +491,12 @@ int main(int argc, char** argv)
         {
             getline(fUseCase, line);
 
-            // skip invalid lines; expecting input of type: "useCase:fileName:methodName"
-            if (count(line.begin(), line.end(), ':') != 2)
+            // skip invalid lines; expecting input of type: "useCase|fileName|methodName"
+            if (count(line.begin(), line.end(), '|') != 2)
                 continue;
 
             vector<string> parts;
-            boost::split(parts, line, boost::is_any_of(":"));
+            boost::split(parts, line, boost::is_any_of("|"));
 
             if (funcs.count(parts[2]) != 0)
                 useCases[parts[0]] = make_pair(parts[2], funcs[parts[2]]);
@@ -500,12 +522,12 @@ int main(int argc, char** argv)
         {
             getline(fModiFuncs, line);
 
-            // skip invalid lines; expecting input of type "fileName:methodName"
-            if (count(line.begin(), line.end(), ':') != 1)
+            // skip invalid lines; expecting input of type "fileName|methodName"
+            if (count(line.begin(), line.end(), '|') != 1)
                 continue;
 
             vector<string> parts;
-            boost::split(parts, line, boost::is_any_of(":"));
+            boost::split(parts, line, boost::is_any_of("|"));
             
             if (funcs.count(parts[1]) != 0)
                 editedFuncs[funcs[parts[1]]] = parts[1];
@@ -548,7 +570,7 @@ int main(int argc, char** argv)
                     // iterate over each item in the path
                     for (list<int>::iterator pit = path.begin(); pit != path.end(); pit++)
                     {
-                        output += ":" + funcNames[*pit];
+                        output += "|" + funcNames[*pit];
                     }
                     outputs.push_back(output);
                 }
