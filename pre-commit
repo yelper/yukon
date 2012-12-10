@@ -1,7 +1,14 @@
 #!/bin/sh
 
-rm -rf diff.txt
-rm -rf modified
+if [[ -f diff.txt ]]; then
+  rm -rf diff.txt
+fi
+if [[ -f modified.txt ]]; then
+  rm -rf modified.txt
+fi
+if [[ -f useCases.txt ]]; then
+  rm -rf useCases.txt
+fi
 git diff HEAD >> diff.txt
 
 strindex() { 
@@ -15,8 +22,8 @@ do
 		b="b/"
 		strindex "$line" "$b" 
 		filename=${line:13:$index-14}
-		echo " " >> modified
-		echo "$filename" >> modified
+		echo " " >> modified.txt
+		echo "$filename" >> modified.txt
 	fi
 	
 	if [[ "$line" == "@@"* ]]; then
@@ -50,8 +57,8 @@ do
 		fi
 		sum1=$((num1+num2))
 		sum2=$((num3+num4))
-		echo "$num1,$sum1" >> modified
-		echo "$num3,$sum2" >> modified
+		echo "$num1,$sum1" >> modified.txt
+		echo "$num3,$sum2" >> modified.txt
 	fi
 done <diff.txt 
 
@@ -89,6 +96,10 @@ do
 		methods=$methods+1
 	fi
 done <input.xml
+
+for line in "${array[@]}"; do
+	echo $line >> useCases.txt
+done
 
 modCount=0
 while read line
@@ -129,40 +140,20 @@ do
 			fi
 		done <functions.txt
 	fi
-done <modified
+done <modified.txt
 
-modlist=$(echo "${modified[@]}" | sed 's/ /\n/g' | sort -u)
+modlist=$(echo "${modified[@]}" | sed 's/ /\n/g' | sort -u )
 modlist=$(echo $modlist)
-useCaseCount=0
+
+rm -rf modified.txt
+
 strindex "$modlist" " "
 space=$index
-while [ $space -gt 0 ]; do
-	name=${modlist:0:$space+1}
-	name=$(echo $name)
-	modlist=${modlist:$space+1:${#modlist}-$space}
+while [[ $space -ge 0 ]]; do
+	substring=${modlist:0:$index}
+	echo $substring >> modified.txt
+	modlist=${modlist:$index+1:${#modlist}-$index}
 	strindex "$modlist" " "
 	space=$index
-	for case in "${array[@]}"; do
-		if [[ "$case" == *"$name" ]]; then
-			strindex "$case" ":"
-			casename=${case:0:$index}
-			usecases[$useCaseCount]=$casename
-			useCaseCount=$useCaseCount+1
-		fi
-	done
 done
-name=$(echo $modlist)
-for case in "${array[@]}"; do
-	if [[ "$case" == *"$name" ]]; then
-		strindex "$case" ":"
-		casename=${case:0:$index}
-		usecases[$useCaseCount]=$casename
-		useCaseCount=$useCaseCount+1
-	fi
-done
-
-for usecase in "${usecases[@]}"; do
-	echo $usecase >> useCasesAffected.txt
-done
-
-rm -rf modified
+echo $modlist >> modified.txt
