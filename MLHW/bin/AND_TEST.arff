@@ -1,0 +1,11 @@
+@RELATION AND
+
+@ATTRIBUTE i1 {F,T}
+@ATTRIBUTE i2 {F,T}
+@ATTRIBUTE class {F,T}
+
+@DATA
+F,F,F
+F,T,F
+T,F,F
+T,T,T

@@ -30,18 +30,18 @@
                 <Button Content="Create New" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="20,10,0,0" Name="btnCreateNew" VerticalAlignment="Top" Width="75" Click="btnCreateNew_Click" />
                 <Button Content="Delete" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="115,10,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnDelete_Click" />
                 <Label Grid.Row="2" Content="Name:" Height="33" Margin="6,46,0,0" Name="lblUseCaseName" VerticalAlignment="Top" HorizontalAlignment="Left" Width="278" />
-                <TextBox Grid.Row="2" Margin="51,48,0,0" Name="txtUseCaseName" HorizontalAlignment="Left" Width="233" Height="25" VerticalAlignment="Top" Text="" TextChanged="txtUseCaseName_TextChanged" />
+                <TextBox Grid.Row="2" Margin="51,48,6,0" Name="txtUseCaseName" Height="25" VerticalAlignment="Top" Text="" TextChanged="txtUseCaseName_TextChanged" />
                 <Label Grid.Row="2" Content="Methods:" Height="33" Margin="6,76,0,0" Name="lblUseCaseMethods" VerticalAlignment="Top" HorizontalAlignment="Left" Width="278" />
-                <ListBox Grid.Row="2" Height="109" HorizontalAlignment="Left" Margin="66,77,0,0" Name="lstUseCaseMethods" VerticalAlignment="Top" Width="218" SelectionChanged="lstUseCaseMethods_SelectionChanged" />
+                <ListBox Grid.Row="2" Height="109" Margin="66,77,6,0" Name="lstUseCaseMethods" VerticalAlignment="Top" SelectionChanged="lstUseCaseMethods_SelectionChanged" />
                 <Button Content="++" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="66,191,0,0" Name="btnAddMethod" VerticalAlignment="Top" Width="29" FontWeight="Bold" FontSize="14" Padding="1" FontFamily="Segoe UI" Foreground="Blue" Click="btnAddMethod_Click" />
                 <Button Content="X" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="101,191,0,0" Name="btnRemoveMethod" VerticalAlignment="Top" Width="29" FontSize="14" FontWeight="Bold" Foreground="Red" Click="btnRemoveMethod_Click" />
-                <TextBox Grid.Row="2" Margin="136,190,0,0" Name="txtMethodSig" HorizontalAlignment="Left" Width="148" Height="25" VerticalAlignment="Top" Text="" TextChanged="txtMethodSig_TextChanged" />
+                <TextBox Grid.Row="2" Margin="136,190,6,0" Name="txtMethodSig" Height="25" VerticalAlignment="Top" Text="" TextChanged="txtMethodSig_TextChanged" />
             </Grid>
         </TabItem>
         <TabItem Header="Configure" Name="tbiConfigure">
             <Grid MinWidth="250" MinHeight="250" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsManipulationEnabled="False" ShowGridLines="False">
                 <Label Content="Project Directory (location of .git subdirectory):" Height="33" Margin="6,6,0,0" Name="label1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="278" />
-                <TextBox Margin="6,32,0,0" Name="txtProjDir" HorizontalAlignment="Left" Width="278" Height="25" VerticalAlignment="Top" Text="" TextChanged="txtProjDir_TextChanged" />
+                <TextBox Margin="6,32,6,0" Name="txtProjDir" Height="25" VerticalAlignment="Top" Text="" TextChanged="txtProjDir_TextChanged" />
             </Grid>
         </TabItem>
     </TabControl>
