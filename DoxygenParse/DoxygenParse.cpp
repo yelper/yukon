@@ -24,6 +24,8 @@ using std::enable_shared_from_this;
 #include "DoxygenParse.h"
 
 
+const int maxDist = numeric_limits<int>::max();
+
 struct fileinfo_t {
     string filename;
     int start;
@@ -232,11 +234,11 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<fileinfo_t,
 
 }
 
-void parseAllGraphFiles(vector<string> files) 
+void parseAllGraphFiles(vector<string> files, vector<vector<edge> > &edges, map<string, int> &names) 
 {
 	int curIndex = 0;
-	map<string, int> names;
-	vector<vector<edge> > edges;
+	names.clear();
+	edges.clear();
 
 	for (int n = 0; n < (int)files.size(); n++)
 	{
@@ -269,22 +271,16 @@ void parseAllGraphFiles(vector<string> files)
 		}
 	}
 
-	vector<string> funcs;
-	for (map<string, int>::iterator it = names.begin(); it != names.end(); ++it)
-		funcs.push_back(it->first);
-
-	// run djikstra's shortest path algorithm on this
-	// V: funcs, E: edges
-
+	//funcs.clear();
+	//for (map<string, int>::iterator it = names.begin(); it != names.end(); ++it)
+	//	funcs.push_back(it->first);
 }
 
 void dijkstraPaths(int start, const vector<vector<edge> > edges, vector<int> &dists, vector<int> &prev)
 {
-	int max = numeric_limits<int>::infinity();
-
 	int n = edges.size();
 	dists.clear();
-	dists.resize(n, max);
+	dists.resize(n, maxDist);
 	dists[start] = 0;
 
 	prev.clear();
@@ -325,9 +321,23 @@ list<int> dijkstraTrace(int vert, const vector<int> &prev)
 	return path;
 }
 
+void getDotFiles(boost::filesystem::path codeDir, vector<string> &files)
+{
+    // get all *_cgraph.dot files in html doc directory
+    boost::filesystem::directory_iterator end_itr;
+    for (boost::filesystem::directory_iterator i(codeDir); i != end_itr; ++i)
+    {
+        // skip non-files (e.g. '..' or directories
+        if (!boost::filesystem::is_regular_file(i->status())) continue;
+
+        if (boost::ends_with(i->path().filename().string(), "_cgraph.dot"))
+            files.push_back(i->path().string());
+    }
+}
+
 int main(int argc, char** argv)
 {
-    if (argc != 3)
+    if (argc < 3)
         printUsageAndExit(-1);
     
     string fname = argv[1];
@@ -373,17 +383,8 @@ int main(int argc, char** argv)
             return -1;
         }
 
-        // get all *_cgraph.dot files in html doc directory
         vector<string> cgraphFiles;
-        boost::filesystem::directory_iterator end_itr;
-        for (boost::filesystem::directory_iterator i(proj); i != end_itr; ++i)
-        {
-            // skip non-files (e.g. '..' or directories
-            if (!boost::filesystem::is_regular_file(i->status())) continue;
-
-            if (boost::ends_with(i->path().filename().string(), "_cgraph.dot"))
-                cgraphFiles.push_back(i->path().string());
-        }
+        getDotFiles(proj, cgraphFiles);
 
         ofstream f(fname + "/graphs.txt");
         if (f.is_open())
@@ -409,10 +410,153 @@ int main(int argc, char** argv)
         }
     }
     
-    // given files of (1) use cases and (2) edited functions, output the (scall graphs for each
+    // given files of (1) use cases and (2) edited functions, output the call graphs for each
     else if (func == "s")
     {
+        if (argc != 5)
+        {
+            cout << "Requires four arguments: <codeDir> s <useCase.txt> <modifiedFuncs.txt>" << endl;
+            cerr << "Missing required arguments; aborting." << endl;
+            return -2;
+        }
 
+        //assume that the call graphs are in the /html/doc directory
+        boost::filesystem::path proj(fname);
+        proj /= "doc/html";
+
+        if (!boost::filesystem::exists(proj))
+        {
+            cout << "Unable to find doc/html directory in the given code path." << endl;
+            cerr << "ERROR: Directory " << proj.string() << " not found." << endl;
+            return -1;
+        }
+
+        if (!boost::filesystem::exists(argv[3]))
+        {
+            cout << "Unable to find use case definition file.  Aborting." << endl;
+            cerr << "ERROR: Use Case file " << argv[3] << " not found." << endl;
+            return -3;
+        } 
+        if (!boost::filesystem::exists(argv[4]))
+        {
+            cout << "Unable to find edited functions file.  Aborting." << endl;
+            cerr << "ERROR: Edited functions file " << argv[4] << " not found." << endl;
+            return -4;
+        }
+
+        // get the dot files
+        vector<string> cgraphFiles;
+        getDotFiles(proj, cgraphFiles);
+
+        // get the list of all functions and their dependencies
+        vector<vector<edge> > edges;
+        map<string, int> funcs;
+        parseAllGraphFiles(cgraphFiles, edges, funcs);
+
+        // maintain a list of functions for easy referencing (int -> func)
+        vector<string> funcNames;
+	    for (map<string, int>::iterator it = funcs.begin(); it != funcs.end(); ++it)
+	        funcNames.push_back(it->first);
+
+        // get the use cases
+        ifstream fUseCase(argv[3]);
+        if (!fUseCase.is_open())
+            cerr << "Unable to open use case file: " << argv[3] << endl;
+
+        string line;
+        map<string, pair<string, int>> useCases;
+        while (fUseCase.good())
+        {
+            getline(fUseCase, line);
+
+            // skip invalid lines; expecting input of type: "useCase:fileName:methodName"
+            if (count(line.begin(), line.end(), ':') != 2)
+                continue;
+
+            vector<string> parts;
+            boost::split(parts, line, boost::is_any_of(":"));
+
+            if (funcs.count(parts[2]) != 0)
+                useCases[parts[0]] = make_pair(parts[2], funcs[parts[2]]);
+            else
+                cout << "WARNING: Unable to find specified function " << parts[2] << " (use case " << parts[0] << ") in the call graphs." << endl;
+
+        }
+        fUseCase.close();
+
+        if (useCases.empty())
+        {
+            cout << "No use cases found, quitting." << endl;
+            return 0;
+        }
+
+        // get the modified functions
+        ifstream fModiFuncs(argv[4]);
+        if (!fModiFuncs.is_open())
+            cerr << "Unable to open modified functions file: " << argv[4] << endl;
+
+        map<int, string> editedFuncs;
+        while (fModiFuncs.good())
+        {
+            getline(fModiFuncs, line);
+
+            // skip invalid lines; expecting input of type "fileName:methodName"
+            if (count(line.begin(), line.end(), ':') != 1)
+                continue;
+
+            vector<string> parts;
+            boost::split(parts, line, boost::is_any_of(":"));
+            
+            if (funcs.count(parts[1]) != 0)
+                editedFuncs[funcs[parts[1]]] = parts[1];
+            else
+                cout << "WARNING: Unable to find the edited function " << parts[1] << " in the call graphs." << endl;
+        }
+
+        if (editedFuncs.empty())
+        {
+            cout << "No edited functions found, quitting." << endl;
+            return 0;
+        }
+
+        // now that we have the directed graph, use cases, and modified functions, try to reconcile them.
+        vector<string> outputs;
+        // for each use case:
+        for (map<string, pair<string, int> >::iterator it = useCases.begin(); it != useCases.end(); it++)
+        {
+            string useCaseName = it->first;
+            string useCaseFunc = it->second.first;
+            int useCaseFuncInt = it->second.second;
+
+            // calculate the distance to all nodes via Dijkstra
+            vector<int> dists;
+            vector<int> prevF;
+            dijkstraPaths(useCaseFuncInt, edges, dists, prevF);
+
+            // for all the edited functions, see if there exists a path from this use case
+            for (map<int, string>::iterator fit = editedFuncs.begin(); fit != editedFuncs.end(); fit++)
+            {
+                int funcID = fit->first;
+
+                // if a path exists, add it to our output
+                if (dists[funcID] != maxDist)
+                {
+                    // get the path to this object
+                    list<int> path = dijkstraTrace(funcID, prevF);
+                    string output = useCaseName;
+                    
+                    // iterate over each item in the path
+                    for (list<int>::iterator pit = path.begin(); pit != path.end(); pit++)
+                    {
+                        output += ":" + funcNames[*pit];
+                    }
+                    outputs.push_back(output);
+                }
+            }
+        }
+
+        for (int i = 0; i < outputs.size(); i++)
+            cout << outputs[i] << endl;
     }
 
 
