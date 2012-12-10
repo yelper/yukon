@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <set>
+#include <list>
 using namespace std;
 
 // include smart pointer functions
@@ -40,7 +42,7 @@ struct edge {
 	bool operator <(const edge &n) const {
 		return this->begin < n.begin;
 	}
-}
+};
 
 void printUsageAndExit(int exitCondition)
 {
@@ -234,7 +236,7 @@ void parseAllGraphFiles(vector<string> files)
 {
 	int curIndex = 0;
 	map<string, int> names;
-	vector<edge> edges;
+	vector<vector<edge> > edges;
 
 	for (int n = 0; n < (int)files.size(); n++)
 	{
@@ -253,11 +255,15 @@ void parseAllGraphFiles(vector<string> files)
 
 					// add to name map if it doesn't exist
 					if (names.count(iname) == 0)
+					{
 						names[iname] = curIndex++;
-					if (names.count(jname) == 0)
+						edges.push_back(vector<edge>());
+					} if (names.count(jname) == 0) {
 						names[jname] = curIndex++;
+						edges.push_back(vector<edge>());
+					}
 
-					edges.push_back(edge(names[iname], names[jname]));
+					edges[names[iname]].push_back(edge(names[iname], names[jname]));
 				}
 			}
 		}
@@ -272,13 +278,51 @@ void parseAllGraphFiles(vector<string> files)
 
 }
 
-size_t findIndexInVector(string needle, vector<string> &haystack) 
+void dijkstraPaths(int start, const vector<vector<edge> > edges, vector<int> &dists, vector<int> &prev)
 {
-	for (int i = 0; i < (int)haystack.size(); i++)
-		if (haystack[i] == needle)
-			return i;
+	int max = numeric_limits<int>::infinity();
 
-	return -1;
+	int n = edges.size();
+	dists.clear();
+	dists.resize(n, max);
+	dists[start] = 0;
+
+	prev.clear();
+	prev.resize(n, -1);
+	set<pair<int, int> > vert_queue;
+	vert_queue.insert(make_pair(0, start));
+
+	while (!vert_queue.empty())
+	{
+		int dist = vert_queue.begin()->first;
+		int u = vert_queue.begin()->second;
+		vert_queue.erase(vert_queue.begin());
+
+		// for all neighbors
+		const vector<edge> &neighs = edges[u];
+		for (vector<edge>::const_iterator it = neighs.begin(); it != neighs.end(); it++)
+		{
+			int v = it->end;
+			int dist_thru_u = dist + 1; // constant weight
+			if (dist_thru_u < dists[v])
+			{
+				vert_queue.erase(make_pair(dists[v], v));
+
+				dists[v] = dist_thru_u;
+				prev[v] = u;
+				vert_queue.insert(make_pair(dists[v], v));
+			}
+		}
+	}
+}
+
+list<int> dijkstraTrace(int vert, const vector<int> &prev)
+{
+	list<int> path;
+	for (; vert != -1; vert = prev[vert])
+		path.push_front(vert);
+	
+	return path;
 }
 
 int main(int argc, char** argv)
