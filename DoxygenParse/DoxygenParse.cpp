@@ -32,6 +32,16 @@ struct fileinfo_t {
     }
 };
 
+struct edge {
+	int begin;
+	int end;
+
+	edge(int b, int e) : begin(b), end(e) { }
+	bool operator <(const edge &n) const {
+		return this->begin < n.begin;
+	}
+}
+
 void printUsageAndExit(int exitCondition)
 {
     exit(exitCondition);
@@ -222,26 +232,53 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<fileinfo_t,
 
 void parseAllGraphFiles(vector<string> files) 
 {
-    for (int n = 0; n < (int)files.size(); n++)
-    {
-        vector<string> names;
-        vector<vector<int> > graph = parseCallGraph(files[n], names);
-        
-        vector<vector<string > > callGraphs;
-        for (int i = 0; i < graph.size(); i++)
-        {
-            string thisName = names[i];
-            callGraphs.push_back(vector<string>());
-            for (int j = 0; j < graph.size(); j++) 
-            {
-                if (i == j) continue; // ignore self-references/recursion for this problem
-                if (graph[i][j] == 1)
-                {
+	int curIndex = 0;
+	map<string, int> names;
+	vector<edge> edges;
 
-                }
-            }
-        }
-    }
+	for (int n = 0; n < (int)files.size(); n++)
+	{
+		vector<string> lnames;
+		vector<vector<int> > graph = parseCallGraph(files[n], lnames);
+
+		for (int i = 0; i < graph.size(); i++)
+		{
+			string iname = lnames[i];
+			for (int j = 0; j < graph.size(); j++)
+			{
+				if (i == j) continue; // skip self-loops
+				if (graph[i][j] == 1) // a edge exists from i to j
+				{
+					string jname = lnames[j];
+
+					// add to name map if it doesn't exist
+					if (names.count(iname) == 0)
+						names[iname] = curIndex++;
+					if (names.count(jname) == 0)
+						names[jname] = curIndex++;
+
+					edges.push_back(edge(names[iname], names[jname]));
+				}
+			}
+		}
+	}
+
+	vector<string> funcs;
+	for (map<string, int>::iterator it = names.begin(); it != names.end(); ++it)
+		funcs.push_back(it->first);
+
+	// run djikstra's shortest path algorithm on this
+	// V: funcs, E: edges
+
+}
+
+size_t findIndexInVector(string needle, vector<string> &haystack) 
+{
+	for (int i = 0; i < (int)haystack.size(); i++)
+		if (haystack[i] == needle)
+			return i;
+
+	return -1;
 }
 
 int main(int argc, char** argv)
