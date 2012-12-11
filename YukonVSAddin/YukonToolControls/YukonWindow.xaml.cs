@@ -42,8 +42,7 @@ namespace YukonToolControls
             input = new YukonInput();
 
             // TODO: remove this
-            output.UseCaseNotifications.Add(new UseCaseNotification("Create New File", "void FileIO::openFile(string)", "FileIO.cpp", 78, "MainWindow::btnOpen_Click(Object,EventArgs)->FileManager::openFile(string)->FileIO::openFile(string)"));
-            output.UseCaseNotifications.Add(new UseCaseNotification("Create New File", "void FileIO::btnOpen_Click(Object,EventArgs)", "MainWindow.cpp", 219, "MainWindow::btnOpen_Click(Object,EventArgs)"));
+            output.UseCaseNotifications.Add(new UseCaseNotification("Save Document", "FileIO::write", "FileIO.cpp", 78, "MainWindow::btnOpen_Click->FileSystem::writeFile->FileIO::write"));
             //
             /*// TODO: move this elsewhere
             ListBox lst = (ListBox)FindName("lstNotifications");
