@@ -1,5 +1,6 @@
 // DoxygenParse.cpp : Defines the entry point for the console application.
 
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -17,6 +18,8 @@ using std::make_shared;
 using std::enable_shared_from_this;
 
 #include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/iter_find.hpp>
+#include <boost/algorithm/string/finder.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
@@ -53,12 +56,12 @@ void printUsageAndExit(int exitCondition)
     cout << endl;
     cout << "  <func> = f     Generate a mapping of line numbers in all code files to " << endl;
     cout << "                   function names, outputs a file <codeDir>/functions.txt" << endl;
-    cout << "             Ex: DoxygenParse U:\classes\cs706\yukon\TestProg f" << endl << endl;
+    cout << "             Ex: DoxygenParse U:\\classes\\cs706\\yukon\\TestProg f" << endl << endl;
     cout << "         = g     Generate a call graph for all *_cgraph.dot files in the" << endl;
     cout << "                   <codeDir>/doc/html/ directory, default output directory of" << endl;
     cout << "                   Doxygen HTML output.  Note that .dot files must be specified" << endl;
     cout << "                   to be retained in the Doxygen config file." << endl;
-    cout << "             Ex: DoxygenParse U:\classes\cs706\yukon\TestProg\ g" << endl << endl;
+    cout << "             Ex: DoxygenParse U:\\classes\\cs706\\yukon\\TestProg\\ g" << endl << endl;
     cout << "         = s     Generate a shortest path mapping (if one exists) from all use" << endl;
     cout << "                   cases to edited function using Dijkstra's algorithm.  Looks" << endl;
     cout << "                   in <codeDir>/doc/html for call graph dot files, parses a" << endl;
@@ -66,9 +69,9 @@ void printUsageAndExit(int exitCondition)
     cout << "                   a edited functions file (see code for format); outputs a" << endl;
     cout << "                   list of use cases and their shortest-path edited function" << endl;
     cout << "                   call graph." << endl;
-    cout << "             Ex: U:\classes\cs706\yukon\TestProg\ s " << endl;
-    cout << "                   U:\classes\cs706\yukon\TestProg\usecase.txt" << endl;
-    cout << "                   U:\classes\cs706\yukon\TestProg\edited.txt" << endl;
+    cout << "             Ex: U:\\classes\\cs706\\yukon\\TestProg\\ s " << endl;
+    cout << "                   U:\\classes\\cs706\\yukon\\TestProg\\usecase.txt" << endl;
+    cout << "                   U:\\classes\\cs706\\yukon\\TestProg\\edited.txt" << endl;
     cout << endl;
     exit(exitCondition);
 }
@@ -98,6 +101,19 @@ vector<vector<int> > parseCallGraph(string filename, vector<string> &names)
             {
                 string name = parts[1];
                 name = name.substr(8, name.size() - 9);
+
+                // get rid of \l in names
+                boost::replace_all(name, "\\l", "");
+
+                // get rid of namespace declarations (to make things easier on ourselves)
+                if (count(name.begin(), name.end(), ':') == 4)
+                {
+                    vector<string> funcParts;
+                    boost::iter_split(funcParts, name, boost::algorithm::first_finder("::"));
+                    
+                    name = funcParts[1] + "::" + funcParts[2];
+                }
+
                 names.push_back(name);
             }
             
@@ -476,9 +492,9 @@ int main(int argc, char** argv)
         parseAllGraphFiles(cgraphFiles, edges, funcs);
 
         // maintain a list of functions for easy referencing (int -> func)
-        vector<string> funcNames;
+        vector<string> funcNames(funcs.size());
 	    for (map<string, int>::iterator it = funcs.begin(); it != funcs.end(); ++it)
-	        funcNames.push_back(it->first);
+	        funcNames[it->second] = it->first;
 
         // get the use cases
         ifstream fUseCase(argv[3]);

@@ -92,7 +92,7 @@ do
 		index1=$((index+1))
 		strindex "$methodSig" "::"
 		fileName=${methodSig:$index1:$index-$index1}
-		array[$methods]="$useCaseName:$fileName:$methodName"
+		array[$methods]="$useCaseName|$fileName|$methodName"
 		methods=$methods+1
 	fi
 done <input.xml
@@ -125,16 +125,16 @@ do
 				metFin=${cutline:0:$space}
 				methodName=${cutline:$space+1:${#cutline}-$space}
 				if [ $((modStart)) -le $((metStart)) ] && [ $((modFin)) -ge $((metStart)) ]; then
-					modified[modCount]="$fileName:$methodName"
+					modified[modCount]="$fileName|$methodName"
 					modCount=$modCount+1
 				elif [ $((modFin)) -ge $((metFin)) ] && [ $((modStart)) -le $((metFin)) ]; then
-					modified[modCount]="$fileName:$methodName"
+					modified[modCount]="$fileName|$methodName"
 					modCount=$modCount+1
 				elif [ $((metStart)) -le $((modStart)) ] && [ $((metFin)) -ge $((modStart)) ]; then
-					modified[modCount]="$fileName:$methodName"
+					modified[modCount]="$fileName|$methodName"
 					modCount=$modCount+1
 				elif [ $((metFin)) -ge $((modFin)) ] && [ $((metStart)) -le $((modFin)) ]; then
-					modified[modCount]="$fileName:$methodName"
+					modified[modCount]="$fileName|$methodName"
 					modCount=$modCount+1
 				fi
 			fi
