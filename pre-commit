@@ -29,9 +29,10 @@ strindex() {
 while read line           
 do           
     if [[ "$line" == "diff --git a/$codedir"* ]]; then
-		b="b/"
+		b=" b/"
 		strindex "$line" "$b" 
-		filename=${line:14+${#codedir}:$index-15-${#codedir}}
+		filename=${line:14+${#codedir}:$index-15-${#codedir}+1}
+		echo $filename
 		echo " " >> $codedir/modifiedFuncs.txt
 		echo "$filename" >> $codedir/modifiedFuncs.txt
 	fi
@@ -72,7 +73,7 @@ do
 	fi
 done <$codedir/diff.txt 
 
-#rm -rf $codedir/diff.txt
+rm -rf $codedir/diff.txt
 
 methods=0
 while read line
@@ -114,14 +115,12 @@ do
 		read line
 		fileName=$line
 		fileName=${fileName//\//\\}
-		echo $fileName
 	else
 		strindex "$line" ","
 		modStart=${line:0:$index}
 		modFin=${line:$index+1:${#line}-$index}
 		while read -r line
 		do
-		echo $line
 			if [[ "$line" == "$fileName"* ]]; then
 				strindex "$line" " "
 				space=$index

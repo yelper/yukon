@@ -23,3 +23,54 @@ Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttribu
 Save Data Set|MLLibCore::saveDataSet
 Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|main|SVMClassifier::train|SVMClassifier::_error|SVMClassifier::_query
 Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|main|SVMClassifier::train
+WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
+No edited functions found, quitting.
+WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
+No edited functions found, quitting.
+WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
+WARNING: Unable to find the edited function BayesNet::Node::removeAllInNodes in the call graphs.
+WARNING: Unable to find the edited function BayesNet::Node::removeInNode in the call graphs.
+Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
+Save Data Set|MLLibCore::saveDataSet
+WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
+WARNING: Unable to find the edited function BayesNet::Node::removeAllInNodes in the call graphs.
+WARNING: Unable to find the edited function BayesNet::Node::removeInNode in the call graphs.
+Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
+Save Data Set|MLLibCore::saveDataSet
+WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
+WARNING: Unable to find the edited function BayesNet::Node::removeAllInNodes in the call graphs.
+WARNING: Unable to find the edited function BayesNet::Node::removeInNode in the call graphs.
+Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
+Save Data Set|MLLibCore::saveDataSet
+WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
+WARNING: Unable to find the edited function BayesNet::Node::removeAllInNodes in the call graphs.
+WARNING: Unable to find the edited function BayesNet::Node::removeInNode in the call graphs.
+Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
+Save Data Set|MLLibCore::saveDataSet
+WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
+No edited functions found, quitting.
+WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
+Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
+Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
+Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue

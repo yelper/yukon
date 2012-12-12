@@ -48,12 +48,12 @@ MLLib\src\DataSet.cpp 106-114 DataSet::_clone
 MLLib\src\DataPoint.cpp 107-113 DataPoint::setRealValue
 MLLib\src\BayesNet.cpp 104-118 BayesNet::Node::removeInNode
 MLLib\src\MLLib.cpp 102-127 MLLibCore::saveDataSet
-MLLib\src\DataPoint.cpp 115-122 DataPoint::getEnumValue
+MLLib\src\DataPoint.cpp 115-121 DataPoint::getEnumValue
 MLLib\src\SVMClassifier.cpp 110-132 SVMClassifier::classify
 MLLib\src\BayesNet.cpp 120-124 BayesNet::Node::removeAllInNodes
-MLLib\src\DataPoint.cpp 124-130 DataPoint::setEnumValue
+MLLib\src\DataPoint.cpp 123-129 DataPoint::setEnumValue
 MLLib\src\BayesNet.cpp 126-131 BayesNet::Node::getInNode
-MLLib\src\DataPoint.cpp 132-135 DataPoint::getNumValues
+MLLib\src\DataPoint.cpp 131-134 DataPoint::getNumValues
 MLLib\src\BayesNet.cpp 133-136 BayesNet::Node::getNumInNodes
 MLLib\src\MLLib.cpp 129-144 MLLibCore::createClassifier
 MLLib\src\ARFFDataSetIO.cpp 132-143 ARFFDataSetIO::_readRelation
