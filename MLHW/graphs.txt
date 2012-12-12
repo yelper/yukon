@@ -1,4 +1,4 @@
-ARFFDataSetIO::write DataSet::getNumAttributes DataSet::getAttribute DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getNumValues DataPoint::isValueUnknown DataPoint::getIntValue DataPoint::getRealValue
+ARFFDataSetIO::write DataSet::getNumAttributes DataSet::getAttribute DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getNumValues DataPoint::isValueUnknown DataPoint::getIntValue DataPoint::getRealValue DataPoint::getEnumValue
 DataSet::getNumAttributes
 DataSet::getAttribute DataSet::getNumAttributes
 DataSet::getNumDataPoints
@@ -7,7 +7,7 @@ DataPoint::getNumValues
 DataPoint::isValueUnknown DataPoint::getNumValues
 DataPoint::getIntValue DataPoint::getNumValues
 DataPoint::getRealValue DataPoint::getNumValues
-DataPoint::getEnumValue
+DataPoint::getEnumValue DataPoint::getNumValues
 
 ARFFDataSetIO::read DataSet::getNumAttributes DataSet::getAttribute
 DataSet::getNumAttributes
@@ -23,12 +23,12 @@ BayesClassifier::_learnNetParams DataSet::getNumAttributes BayesNet::getNode Bay
 DataSet::getNumAttributes
 BayesNet::getNode BayesNet::hasNode
 BayesNet::hasNode
-BayesClassifier::_learnNetNodeParams BayesClassifier::_learnNetParams MLLib::BayesNet::Node::resetParams DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex
+BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::resetParams DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::incCount MLLib::BayesNet::Node::initParams
 MLLib::BayesNet::Node::resetParams
 DataSet::getNumDataPoints
 DataSet::getDataPoint DataSet::getNumDataPoints
-MLLib::BayesNet::Node::getCPTRowIndex BayesClassifier::_learnNetParams
-DataPoint::getEnumValue
+MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::getNumValues
+DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getNumValues
 MLLib::BayesNet::Node::getAttribIndex
 MLLib::BayesNet::Node::getNumValues
@@ -50,7 +50,7 @@ BayesNet::getNode BayesNet::hasNode
 BayesNet::hasNode
 MLLib::BayesNet::Node::getNumParams
 
-BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::resetParams DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex
+BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::resetParams DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::incCount MLLib::BayesNet::Node::initParams
 MLLib::BayesNet::Node::resetParams
 DataSet::getNumDataPoints
 DataSet::getDataPoint DataSet::getNumDataPoints
@@ -72,50 +72,50 @@ MLLib::BayesNet::Node::addInNode
 BayesClassifier::~BayesClassifier BayesClassifier::reset
 BayesClassifier::reset
 
-BayesClassifier::_trainSparseCandidate DataSet::getNumAttributes BayesNet::createNode DataSet::getAttribute BayesClassifier::_learnNetParams BayesNet::getNode
-DataSet::getNumAttributes BayesClassifier::_trainSparseCandidate DataSet::getAttribute BayesNet::getNode
-BayesNet::createNode BayesClassifier::_trainSparseCandidate DataSet::getNumAttributes BayesNet::hasNode BayesClassifier::_learnNetNodeParams
+BayesClassifier::_trainSparseCandidate DataSet::getNumAttributes BayesNet::createNode DataSet::getAttribute BayesClassifier::_learnNetParams BayesNet::getNode MLLib::BayesNet::Node::getAttribIndex BayesClassifier::_BICInit BayesNet::getNumNodes BayesClassifier::_BIC MLLib::BayesNet::Node::hasInNode MLLib::BayesNet::Node::getNumInNodes BayesClassifier::_computeCondMutualInf MLLib::BayesNet::Node::getInNode BayesClassifier::_computeMutualInf BayesClassifier::_BICArcAddTest BayesClassifier::_BICArcAdd
+DataSet::getNumAttributes
+BayesNet::createNode BayesNet::hasNode
 BayesNet::hasNode
 DataSet::getAttribute DataSet::getNumAttributes
 BayesClassifier::_learnNetParams DataSet::getNumAttributes BayesNet::getNode BayesClassifier::_learnNetNodeParams
 BayesNet::getNode BayesNet::hasNode
-BayesClassifier::_learnNetNodeParams BayesClassifier::_trainSparseCandidate MLLib::BayesNet::Node::resetParams
+BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::resetParams DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::incCount MLLib::BayesNet::Node::initParams
 MLLib::BayesNet::Node::resetParams
 DataSet::getNumDataPoints
-DataSet::getDataPoint
-MLLib::BayesNet::Node::getCPTRowIndex
-DataPoint::getEnumValue
+DataSet::getDataPoint DataSet::getNumDataPoints
+MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::getNumValues
+DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getNumValues
 MLLib::BayesNet::Node::getAttribIndex
 MLLib::BayesNet::Node::getNumValues
 MLLib::BayesNet::Node::incCount
 MLLib::BayesNet::Node::initParams
-BayesClassifier::_BICInit
+BayesClassifier::_BICInit BayesNet::getNode DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex BayesNet::getNumNodes MLLib::BayesNet::Node::getParam BayesClassifier::_BICPenalty BayesClassifier::_BIC
 BayesNet::getNumNodes
 MLLib::BayesNet::Node::getParam
-BayesClassifier::_BICPenalty
+BayesClassifier::_BICPenalty BayesNet::getNode DataSet::getNumDataPoints BayesNet::getNumNodes MLLib::BayesNet::Node::getNumParams
 MLLib::BayesNet::Node::getNumParams
 BayesClassifier::_BIC
 MLLib::BayesNet::Node::hasInNode
 MLLib::BayesNet::Node::getNumInNodes
-BayesClassifier::_computeCondMutualInf
+BayesClassifier::_computeCondMutualInf DataSet::getAttribute DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getEnumValue
 MLLib::BayesNet::Node::getInNode
-BayesClassifier::_computeMutualInf
-BayesClassifier::_BICArcAddTest
-BayesClassifier::_BICLogLAttr
+BayesClassifier::_computeMutualInf DataSet::getAttribute DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getEnumValue
+BayesClassifier::_BICArcAddTest BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::getNumValues MLLib::BayesNet::Node::initParams BayesClassifier::_BICPenalty MLLib::BayesNet::Node::getNumParams MLLib::BayesNet::Node::hasInNode BayesClassifier::_BICLogLAttr MLLib::BayesNet::Node::getCount MLLib::BayesNet::Node::addInNode MLLib::BayesNet::Node::removeInNode MLLib::BayesNet::Node::setCount
+BayesClassifier::_BICLogLAttr DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::getParam
 MLLib::BayesNet::Node::getCount
 MLLib::BayesNet::Node::addInNode
 MLLib::BayesNet::Node::removeInNode
 MLLib::BayesNet::Node::setCount
-BayesClassifier::_BICArcAdd
+BayesClassifier::_BICArcAdd BayesClassifier::_learnNetNodeParams BayesClassifier::_BICPenalty BayesClassifier::_BIC BayesClassifier::_BICLogLAttr MLLib::BayesNet::Node::addInNode
 
-BayesClassifier::_BICArcAddTest MLLib::BayesNet::Node::hasInNode BayesClassifier::_BICLogLAttr MLLib::BayesNet::Node::getAttribIndex DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue
+BayesClassifier::_BICArcAddTest MLLib::BayesNet::Node::hasInNode BayesClassifier::_BICLogLAttr MLLib::BayesNet::Node::getNumValues MLLib::BayesNet::Node::getNumParams MLLib::BayesNet::Node::getCount MLLib::BayesNet::Node::addInNode BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::initParams BayesClassifier::_BICPenalty MLLib::BayesNet::Node::removeInNode MLLib::BayesNet::Node::setCount
 MLLib::BayesNet::Node::hasInNode
-BayesClassifier::_BICLogLAttr BayesClassifier::_BICArcAddTest MLLib::BayesNet::Node::getAttribIndex DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue
+BayesClassifier::_BICLogLAttr MLLib::BayesNet::Node::getAttribIndex DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getParam
 MLLib::BayesNet::Node::getAttribIndex
 DataSet::getNumDataPoints
 DataSet::getDataPoint DataSet::getNumDataPoints
-MLLib::BayesNet::Node::getCPTRowIndex BayesClassifier::_BICArcAddTest MLLib::BayesNet::Node::getAttribIndex DataPoint::getEnumValue
+MLLib::BayesNet::Node::getCPTRowIndex MLLib::BayesNet::Node::getAttribIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getNumValues
 DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getNumValues
 MLLib::BayesNet::Node::getNumValues
@@ -123,13 +123,13 @@ MLLib::BayesNet::Node::getParam
 MLLib::BayesNet::Node::getNumParams
 MLLib::BayesNet::Node::getCount
 MLLib::BayesNet::Node::addInNode
-BayesClassifier::_learnNetNodeParams
+BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::getAttribIndex DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::resetParams MLLib::BayesNet::Node::incCount MLLib::BayesNet::Node::initParams
 MLLib::BayesNet::Node::resetParams
 MLLib::BayesNet::Node::incCount
 MLLib::BayesNet::Node::initParams
-BayesClassifier::_BICPenalty
+BayesClassifier::_BICPenalty DataSet::getNumDataPoints MLLib::BayesNet::Node::getNumParams BayesNet::getNumNodes BayesNet::getNode
 BayesNet::getNumNodes
-BayesNet::getNode
+BayesNet::getNode BayesNet::hasNode
 BayesNet::hasNode
 MLLib::BayesNet::Node::removeInNode
 MLLib::BayesNet::Node::setCount
@@ -145,8 +145,8 @@ DataSet::getDataPoint DataSet::getNumDataPoints
 DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getNumValues
 
-BayesClassifier::_BICArcAdd BayesClassifier::_BICLogLAttr MLLib::BayesNet::Node::getAttribIndex DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue
-BayesClassifier::_BICLogLAttr BayesClassifier::_BICArcAdd MLLib::BayesNet::Node::getAttribIndex DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue
+BayesClassifier::_BICArcAdd BayesClassifier::_BICLogLAttr MLLib::BayesNet::Node::addInNode BayesClassifier::_learnNetNodeParams BayesClassifier::_BICPenalty BayesClassifier::_BIC
+BayesClassifier::_BICLogLAttr MLLib::BayesNet::Node::getAttribIndex DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getParam
 MLLib::BayesNet::Node::getAttribIndex
 DataSet::getNumDataPoints
 DataSet::getDataPoint DataSet::getNumDataPoints
@@ -156,13 +156,13 @@ DataPoint::getNumValues
 MLLib::BayesNet::Node::getNumValues
 MLLib::BayesNet::Node::getParam
 MLLib::BayesNet::Node::addInNode
-BayesClassifier::_learnNetNodeParams
+BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::getAttribIndex DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::resetParams MLLib::BayesNet::Node::incCount MLLib::BayesNet::Node::initParams
 MLLib::BayesNet::Node::resetParams
 MLLib::BayesNet::Node::incCount
 MLLib::BayesNet::Node::initParams
-BayesClassifier::_BICPenalty
+BayesClassifier::_BICPenalty DataSet::getNumDataPoints BayesNet::getNumNodes BayesNet::getNode MLLib::BayesNet::Node::getNumParams
 BayesNet::getNumNodes
-BayesNet::getNode
+BayesNet::getNode BayesNet::hasNode
 BayesNet::hasNode
 MLLib::BayesNet::Node::getNumParams
 BayesClassifier::_BIC
@@ -174,14 +174,14 @@ BayesNet::hasNode
 DataSet::getNumAttributes
 DataSet::getAttribute DataSet::getNumAttributes
 MLLib::BayesNet::Node::addInNode
-BayesClassifier::_learnNetParams BayesClassifier::_trainNaiveBayes DataSet::getNumAttributes BayesNet::getNode
+BayesClassifier::_learnNetParams DataSet::getNumAttributes BayesNet::getNode BayesClassifier::_learnNetNodeParams
 BayesNet::getNode BayesNet::hasNode
-BayesClassifier::_learnNetNodeParams
+BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::resetParams DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::incCount MLLib::BayesNet::Node::initParams
 MLLib::BayesNet::Node::resetParams
 DataSet::getNumDataPoints
-DataSet::getDataPoint
-MLLib::BayesNet::Node::getCPTRowIndex
-DataPoint::getEnumValue
+DataSet::getDataPoint DataSet::getNumDataPoints
+MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::getNumValues
+DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getNumValues
 MLLib::BayesNet::Node::getAttribIndex
 MLLib::BayesNet::Node::getNumValues
@@ -198,45 +198,45 @@ DataPoint::getNumValues
 MLLib::BayesNet::Node::getNumValues
 MLLib::BayesNet::Node::getParam
 
-BayesClassifier::_BICInit DataSet::getNumDataPoints DataSet::getDataPoint BayesNet::getNumNodes BayesNet::getNode MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue
+BayesClassifier::_BICInit DataSet::getNumDataPoints DataSet::getDataPoint BayesNet::getNumNodes BayesNet::getNode MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getParam BayesClassifier::_BICPenalty BayesClassifier::_BIC
 DataSet::getNumDataPoints
 DataSet::getDataPoint DataSet::getNumDataPoints
 BayesNet::getNumNodes
 BayesNet::getNode BayesNet::hasNode
 BayesNet::hasNode
 MLLib::BayesNet::Node::getAttribIndex
-MLLib::BayesNet::Node::getCPTRowIndex BayesClassifier::_BICInit MLLib::BayesNet::Node::getAttribIndex DataPoint::getEnumValue
-DataPoint::getEnumValue BayesClassifier::_BICInit
+MLLib::BayesNet::Node::getCPTRowIndex MLLib::BayesNet::Node::getAttribIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getNumValues
+DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getNumValues
 MLLib::BayesNet::Node::getNumValues
 MLLib::BayesNet::Node::getParam
-BayesClassifier::_BICPenalty
+BayesClassifier::_BICPenalty DataSet::getNumDataPoints BayesNet::getNumNodes BayesNet::getNode MLLib::BayesNet::Node::getNumParams
 MLLib::BayesNet::Node::getNumParams
 BayesClassifier::_BIC
 
-BayesClassifier::classify DataSet::getNumDataPoints DataSet::getDataPoint BayesNet::classify DataPoint::getNumValues BayesNet::getNode MLLib::BayesNet::Node::getNumValues DataPoint::setEnumValue
+BayesClassifier::classify DataSet::getNumDataPoints DataSet::getDataPoint BayesNet::classify DataSet::setDataPoint
 DataSet::getNumDataPoints
 DataSet::getDataPoint DataSet::getNumDataPoints
-BayesNet::classify BayesClassifier::classify DataPoint::getNumValues BayesNet::getNode MLLib::BayesNet::Node::getNumValues DataPoint::setEnumValue
+BayesNet::classify DataPoint::getNumValues BayesNet::getNode MLLib::BayesNet::Node::getNumValues DataPoint::setEnumValue BayesNet::query
 DataPoint::getNumValues
 BayesNet::getNode BayesNet::hasNode
 BayesNet::hasNode
 MLLib::BayesNet::Node::getNumValues
 DataPoint::setEnumValue DataPoint::getNumValues
-BayesNet::query
-DataPoint::getValueType
-BayesNet::queryLog
-MLLib::BayesNet::Node::getCPTRowIndex
-DataPoint::getEnumValue
+BayesNet::query DataPoint::getNumValues BayesNet::getNode MLLib::BayesNet::Node::getNumValues DataPoint::setEnumValue DataPoint::getValueType BayesNet::queryLog DataPoint::getEnumValue
+DataPoint::getValueType DataPoint::getNumValues
+BayesNet::queryLog DataPoint::getNumValues DataPoint::getValueType MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getParam
+MLLib::BayesNet::Node::getCPTRowIndex MLLib::BayesNet::Node::getNumValues DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex
+DataPoint::getEnumValue DataPoint::getNumValues
 MLLib::BayesNet::Node::getAttribIndex
 MLLib::BayesNet::Node::getParam
-DataSet::setDataPoint
+DataSet::setDataPoint DataSet::getNumDataPoints
 
 BayesClassifier::_buildNodeTree MLLib::BayesNet::Node::addInNode
 MLLib::BayesNet::Node::addInNode
 
-BayesClassifier::_trainTAN BayesClassifier::_createNaiveBayesStructure DataSet::getNumAttributes DataSet::getAttribute MLLib::BayesNet::Node::addInNode BayesNet::getNumNodes BayesNet::getNode
-BayesClassifier::_createNaiveBayesStructure BayesClassifier::_trainTAN BayesNet::createNode DataSet::getNumAttributes DataSet::getAttribute MLLib::BayesNet::Node::addInNode
+BayesClassifier::_trainTAN BayesClassifier::_createNaiveBayesStructure DataSet::getNumAttributes BayesNet::getNumNodes BayesNet::getNode MLLib::BayesNet::Node::getAttribIndex BayesClassifier::_computeMutualInf MLLib::BayesClassifier::Arc::getNode1 MLLib::BayesClassifier::Arc::getNode2 BayesClassifier::_buildNodeTree BayesClassifier::_learnNetParams
+BayesClassifier::_createNaiveBayesStructure BayesNet::createNode DataSet::getNumAttributes DataSet::getAttribute MLLib::BayesNet::Node::addInNode
 BayesNet::createNode BayesNet::hasNode
 BayesNet::hasNode
 DataSet::getNumAttributes
@@ -245,66 +245,66 @@ MLLib::BayesNet::Node::addInNode
 BayesNet::getNumNodes
 BayesNet::getNode BayesNet::hasNode
 MLLib::BayesNet::Node::getAttribIndex
-BayesClassifier::_computeMutualInf
+BayesClassifier::_computeMutualInf DataSet::getAttribute DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getEnumValue
 DataSet::getNumDataPoints
-DataSet::getDataPoint
-DataPoint::getEnumValue
+DataSet::getDataPoint DataSet::getNumDataPoints
+DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getNumValues
 MLLib::BayesClassifier::Arc::getNode1
 MLLib::BayesClassifier::Arc::getNode2
-BayesClassifier::_buildNodeTree
-BayesClassifier::_learnNetParams
-BayesClassifier::_learnNetNodeParams
+BayesClassifier::_buildNodeTree MLLib::BayesNet::Node::addInNode
+BayesClassifier::_learnNetParams DataSet::getNumAttributes BayesNet::getNode BayesClassifier::_learnNetNodeParams
+BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::getAttribIndex DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getEnumValue MLLib::BayesNet::Node::resetParams MLLib::BayesNet::Node::getCPTRowIndex MLLib::BayesNet::Node::incCount MLLib::BayesNet::Node::initParams
 MLLib::BayesNet::Node::resetParams
-MLLib::BayesNet::Node::getCPTRowIndex
+MLLib::BayesNet::Node::getCPTRowIndex MLLib::BayesNet::Node::getAttribIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getNumValues
 MLLib::BayesNet::Node::getNumValues
 MLLib::BayesNet::Node::incCount
 MLLib::BayesNet::Node::initParams
 
-BayesClassifier::train BayesClassifier::reset BayesClassifier::_trainNaiveBayes BayesNet::hasNode DataSet::getNumAttributes
-BayesClassifier::reset BayesClassifier::train BayesClassifier::_trainNaiveBayes BayesClassifier::_createNaiveBayesStructure BayesNet::createNode DataSet::getNumAttributes DataSet::getAttribute MLLib::BayesNet::Node::addInNode
-BayesClassifier::_trainNaiveBayes BayesClassifier::train BayesClassifier::reset BayesClassifier::_createNaiveBayesStructure DataSet::getAttribute MLLib::BayesNet::Node::addInNode
-BayesClassifier::_createNaiveBayesStructure BayesClassifier::train BayesClassifier::_trainNaiveBayes BayesNet::createNode DataSet::getNumAttributes DataSet::getAttribute MLLib::BayesNet::Node::addInNode
+BayesClassifier::train BayesClassifier::reset BayesClassifier::_trainNaiveBayes BayesClassifier::_trainTAN BayesClassifier::_trainSparseCandidate
+BayesClassifier::reset
+BayesClassifier::_trainNaiveBayes BayesClassifier::_createNaiveBayesStructure BayesClassifier::_learnNetParams
+BayesClassifier::_createNaiveBayesStructure BayesNet::createNode DataSet::getNumAttributes DataSet::getAttribute MLLib::BayesNet::Node::addInNode
 BayesNet::createNode BayesNet::hasNode
 BayesNet::hasNode
 DataSet::getNumAttributes
 DataSet::getAttribute DataSet::getNumAttributes
 MLLib::BayesNet::Node::addInNode
-BayesClassifier::_learnNetParams
-BayesNet::getNode
-BayesClassifier::_learnNetNodeParams
+BayesClassifier::_learnNetParams DataSet::getNumAttributes BayesNet::getNode BayesClassifier::_learnNetNodeParams
+BayesNet::getNode BayesNet::hasNode
+BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::resetParams DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::incCount MLLib::BayesNet::Node::initParams
 MLLib::BayesNet::Node::resetParams
 DataSet::getNumDataPoints
-DataSet::getDataPoint
-MLLib::BayesNet::Node::getCPTRowIndex
-DataPoint::getEnumValue
+DataSet::getDataPoint DataSet::getNumDataPoints
+MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::getNumValues
+DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getNumValues
 MLLib::BayesNet::Node::getAttribIndex
 MLLib::BayesNet::Node::getNumValues
 MLLib::BayesNet::Node::incCount
 MLLib::BayesNet::Node::initParams
-BayesClassifier::_trainTAN
+BayesClassifier::_trainTAN BayesClassifier::_createNaiveBayesStructure DataSet::getNumAttributes BayesClassifier::_learnNetParams BayesNet::getNode MLLib::BayesNet::Node::getAttribIndex BayesNet::getNumNodes BayesClassifier::_computeMutualInf MLLib::BayesClassifier::Arc::getNode1 MLLib::BayesClassifier::Arc::getNode2 BayesClassifier::_buildNodeTree
 BayesNet::getNumNodes
-BayesClassifier::_computeMutualInf
+BayesClassifier::_computeMutualInf DataSet::getAttribute DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getEnumValue
 MLLib::BayesClassifier::Arc::getNode1
 MLLib::BayesClassifier::Arc::getNode2
-BayesClassifier::_buildNodeTree
-BayesClassifier::_trainSparseCandidate
-BayesClassifier::_BICInit
+BayesClassifier::_buildNodeTree MLLib::BayesNet::Node::addInNode
+BayesClassifier::_trainSparseCandidate BayesNet::createNode DataSet::getNumAttributes DataSet::getAttribute BayesClassifier::_learnNetParams BayesNet::getNode MLLib::BayesNet::Node::getAttribIndex BayesNet::getNumNodes BayesClassifier::_computeMutualInf BayesClassifier::_BICInit BayesClassifier::_BIC MLLib::BayesNet::Node::hasInNode MLLib::BayesNet::Node::getNumInNodes BayesClassifier::_computeCondMutualInf MLLib::BayesNet::Node::getInNode BayesClassifier::_BICArcAddTest BayesClassifier::_BICArcAdd
+BayesClassifier::_BICInit BayesNet::getNode DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex BayesNet::getNumNodes MLLib::BayesNet::Node::getParam BayesClassifier::_BICPenalty BayesClassifier::_BIC
 MLLib::BayesNet::Node::getParam
-BayesClassifier::_BICPenalty
+BayesClassifier::_BICPenalty BayesNet::getNode DataSet::getNumDataPoints BayesNet::getNumNodes MLLib::BayesNet::Node::getNumParams
 MLLib::BayesNet::Node::getNumParams
 BayesClassifier::_BIC
 MLLib::BayesNet::Node::hasInNode
 MLLib::BayesNet::Node::getNumInNodes
-BayesClassifier::_computeCondMutualInf
+BayesClassifier::_computeCondMutualInf DataSet::getAttribute DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getEnumValue
 MLLib::BayesNet::Node::getInNode
-BayesClassifier::_BICArcAddTest
-BayesClassifier::_BICLogLAttr
+BayesClassifier::_BICArcAddTest MLLib::BayesNet::Node::addInNode BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::getNumValues MLLib::BayesNet::Node::initParams BayesClassifier::_BICPenalty MLLib::BayesNet::Node::getNumParams MLLib::BayesNet::Node::hasInNode BayesClassifier::_BICLogLAttr MLLib::BayesNet::Node::getCount MLLib::BayesNet::Node::removeInNode MLLib::BayesNet::Node::setCount
+BayesClassifier::_BICLogLAttr DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::getParam
 MLLib::BayesNet::Node::getCount
 MLLib::BayesNet::Node::removeInNode
 MLLib::BayesNet::Node::setCount
-BayesClassifier::_BICArcAdd
+BayesClassifier::_BICArcAdd MLLib::BayesNet::Node::addInNode BayesClassifier::_learnNetNodeParams BayesClassifier::_BICPenalty BayesClassifier::_BIC BayesClassifier::_BICLogLAttr
 
 MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::getNumValues
 DataPoint::getEnumValue DataPoint::getNumValues
@@ -322,11 +322,11 @@ BayesNet::getNode BayesNet::hasNode
 BayesNet::hasNode
 MLLib::BayesNet::Node::getNumValues
 DataPoint::setEnumValue DataPoint::getNumValues
-BayesNet::query BayesNet::classify DataPoint::getNumValues BayesNet::getNode MLLib::BayesNet::Node::getNumValues DataPoint::setEnumValue DataPoint::getValueType BayesNet::queryLog
+BayesNet::query DataPoint::getNumValues BayesNet::getNode MLLib::BayesNet::Node::getNumValues DataPoint::setEnumValue DataPoint::getValueType BayesNet::queryLog DataPoint::getEnumValue
 DataPoint::getValueType DataPoint::getNumValues
-BayesNet::queryLog BayesNet::classify DataPoint::getNumValues DataPoint::getValueType
-MLLib::BayesNet::Node::getCPTRowIndex
-DataPoint::getEnumValue
+BayesNet::queryLog DataPoint::getNumValues DataPoint::getValueType MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getParam
+MLLib::BayesNet::Node::getCPTRowIndex MLLib::BayesNet::Node::getNumValues DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex
+DataPoint::getEnumValue DataPoint::getNumValues
 MLLib::BayesNet::Node::getAttribIndex
 MLLib::BayesNet::Node::getParam
 
@@ -336,16 +336,16 @@ BayesNet::hasNode
 BayesNet::getNode BayesNet::hasNode
 BayesNet::hasNode
 
-BayesNet::query DataPoint::getNumValues DataPoint::getValueType BayesNet::getNode MLLib::BayesNet::Node::getNumValues DataPoint::setEnumValue BayesNet::queryLog
+BayesNet::query DataPoint::getNumValues DataPoint::getValueType BayesNet::getNode MLLib::BayesNet::Node::getNumValues DataPoint::setEnumValue BayesNet::queryLog DataPoint::getEnumValue
 DataPoint::getNumValues
 DataPoint::getValueType DataPoint::getNumValues
 BayesNet::getNode BayesNet::hasNode
 BayesNet::hasNode
 MLLib::BayesNet::Node::getNumValues
 DataPoint::setEnumValue DataPoint::getNumValues
-BayesNet::queryLog BayesNet::query DataPoint::getNumValues DataPoint::getValueType MLLib::BayesNet::Node::getCPTRowIndex
-MLLib::BayesNet::Node::getCPTRowIndex BayesNet::query MLLib::BayesNet::Node::getNumValues
-DataPoint::getEnumValue
+BayesNet::queryLog DataPoint::getNumValues DataPoint::getValueType MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getParam
+MLLib::BayesNet::Node::getCPTRowIndex MLLib::BayesNet::Node::getNumValues DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex
+DataPoint::getEnumValue DataPoint::getNumValues
 MLLib::BayesNet::Node::getAttribIndex
 MLLib::BayesNet::Node::getParam
 
@@ -361,7 +361,7 @@ MLLib::BayesNet::Node::getParam
 BayesNet::deleteAllNodes BayesNet::getNumNodes
 BayesNet::getNumNodes
 
-Classifier::test Classifier::classify DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getEnumValue DataPoint::getNumValues DataPoint::getValueType DataSet::getAttribute
+Classifier::test Classifier::classify DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getEnumValue DataPoint::getNumValues DataPoint::getValueType DataSet::getAttribute DataPoint::getIntValue DataPoint::getRealValue DataSet::getDPProbability
 Classifier::classify
 DataSet::getNumDataPoints
 DataSet::getDataPoint DataSet::getNumDataPoints
@@ -370,9 +370,9 @@ DataPoint::getNumValues
 DataPoint::getValueType DataPoint::getNumValues
 DataSet::getAttribute DataSet::getNumAttributes
 DataSet::getNumAttributes
-DataPoint::getIntValue
-DataPoint::getRealValue
-DataSet::getDPProbability
+DataPoint::getIntValue DataPoint::getNumValues
+DataPoint::getRealValue DataPoint::getNumValues
+DataSet::getDPProbability DataSet::getNumDataPoints
 
 DataPoint::getIntValue DataPoint::getNumValues
 DataPoint::getNumValues
@@ -428,8 +428,8 @@ DataSet::getNumAttributes
 DataSet::setDPProbability DataSet::getNumDataPoints
 DataSet::getNumDataPoints
 
-MLLibCore::saveDataSet ARFFDataSetIO::write DataPoint::getNumValues
-ARFFDataSetIO::write MLLibCore::saveDataSet DataSet::getNumAttributes DataSet::getAttribute DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getNumValues DataPoint::isValueUnknown DataPoint::getIntValue
+MLLibCore::saveDataSet ARFFDataSetIO::write
+ARFFDataSetIO::write DataSet::getNumAttributes DataSet::getAttribute DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getNumValues DataPoint::isValueUnknown DataPoint::getIntValue DataPoint::getRealValue DataPoint::getEnumValue
 DataSet::getNumAttributes
 DataSet::getAttribute DataSet::getNumAttributes
 DataSet::getNumDataPoints
@@ -437,8 +437,8 @@ DataSet::getDataPoint DataSet::getNumDataPoints
 DataPoint::getNumValues
 DataPoint::isValueUnknown DataPoint::getNumValues
 DataPoint::getIntValue DataPoint::getNumValues
-DataPoint::getRealValue
-DataPoint::getEnumValue
+DataPoint::getRealValue DataPoint::getNumValues
+DataPoint::getEnumValue DataPoint::getNumValues
 
 MLLibCore::cloneDataSet DataSet::_clone
 DataSet::_clone DataSet::DataSet
@@ -509,19 +509,19 @@ DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getIntValue DataPoint::getNumValues
 DataPoint::getRealValue DataPoint::getNumValues
 
-SVMClassifier::train SVMClassifier::reset DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getNumValues SVMClassifier::_cacheKernels SVMClassifier::_kernel SVMClassifier::_processExample SVMClassifier::_error
+SVMClassifier::train SVMClassifier::reset DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getNumValues SVMClassifier::_cacheKernels SVMClassifier::_processExample
 SVMClassifier::reset
 DataSet::getNumDataPoints
 DataSet::getDataPoint DataSet::getNumDataPoints
 DataPoint::getNumValues
 SVMClassifier::_cacheKernels SVMClassifier::_kernel
 SVMClassifier::_kernel
-SVMClassifier::_processExample SVMClassifier::train SVMClassifier::_error
-SVMClassifier::_error SVMClassifier::train
-SVMClassifier::_query
+SVMClassifier::_processExample SVMClassifier::_error SVMClassifier::_advanceSMO
+SVMClassifier::_error SVMClassifier::_query SVMClassifier::_isBound
+SVMClassifier::_query SVMClassifier::_kernel
 SVMClassifier::_isBound
-SVMClassifier::_advanceSMO
-SVMClassifier::_updateErrorCache
+SVMClassifier::_advanceSMO SVMClassifier::_kernel SVMClassifier::_error SVMClassifier::_updateErrorCache
+SVMClassifier::_updateErrorCache SVMClassifier::_query SVMClassifier::_isBound
 
 SVMClassifier::_processExample SVMClassifier::_error SVMClassifier::_advanceSMO
 SVMClassifier::_error SVMClassifier::_query SVMClassifier::_isBound
@@ -545,7 +545,7 @@ DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getIntValue DataPoint::getNumValues
 DataPoint::getRealValue DataPoint::getNumValues
 
-SVMClassifier::classify DataSet::getNumDataPoints DataSet::getDataPoint SVMClassifier::_query DataPoint::getValueType DataPoint::getNumValues DataPoint::setEnumValue DataPoint::setIntValue
+SVMClassifier::classify DataSet::getNumDataPoints DataSet::getDataPoint SVMClassifier::_query DataPoint::getValueType DataPoint::getNumValues DataPoint::setEnumValue DataPoint::setIntValue DataPoint::setRealValue DataSet::setDataPoint
 DataSet::getNumDataPoints
 DataSet::getDataPoint DataSet::getNumDataPoints
 SVMClassifier::_query SVMClassifier::_kernel
@@ -554,8 +554,8 @@ DataPoint::getValueType DataPoint::getNumValues
 DataPoint::getNumValues
 DataPoint::setEnumValue DataPoint::getNumValues
 DataPoint::setIntValue DataPoint::getNumValues
-DataPoint::setRealValue
-DataSet::setDataPoint
+DataPoint::setRealValue DataPoint::getNumValues
+DataSet::setDataPoint DataSet::getNumDataPoints
 
 SVMClassifier::_updateErrorCache SVMClassifier::_isBound SVMClassifier::_query
 SVMClassifier::_isBound
@@ -568,7 +568,7 @@ SVMClassifier::_kernel
 SVMClassifier::_cacheKernels SVMClassifier::_kernel
 SVMClassifier::_kernel
 
-SVMClassifier::_kernel SVMClassifier::_dot DataPoint::getNumValues DataPoint::getValueType DataPoint::getEnumValue DataPoint::getIntValue DataPoint::getRealValue SVMClassifier::_kPoly SVMClassifier::_kGauss
+SVMClassifier::_kernel SVMClassifier::_dot SVMClassifier::_kPoly SVMClassifier::_kGauss
 SVMClassifier::_dot DataPoint::getNumValues DataPoint::getValueType DataPoint::getEnumValue DataPoint::getIntValue DataPoint::getRealValue
 DataPoint::getNumValues
 DataPoint::getValueType DataPoint::getNumValues
@@ -576,85 +576,85 @@ DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getIntValue DataPoint::getNumValues
 DataPoint::getRealValue DataPoint::getNumValues
 SVMClassifier::_kPoly SVMClassifier::_dot
-SVMClassifier::_kGauss SVMClassifier::_kernel
-SVMClassifier::_subNormSq
+SVMClassifier::_kGauss SVMClassifier::_subNormSq
+SVMClassifier::_subNormSq DataPoint::getNumValues DataPoint::getValueType DataPoint::getEnumValue DataPoint::getIntValue DataPoint::getRealValue
 
-main BayesClassifier::setBayesType BayesClassifier::reset BayesClassifier::train BayesNet::hasNode DataSet::getNumAttributes
-BayesClassifier::setBayesType main BayesClassifier::reset BayesClassifier::train BayesClassifier::_createNaiveBayesStructure BayesNet::createNode DataSet::getNumAttributes
-BayesClassifier::reset main BayesClassifier::setBayesType BayesClassifier::train
-BayesClassifier::train main BayesClassifier::setBayesType BayesClassifier::reset BayesClassifier::_trainNaiveBayes
-BayesClassifier::_trainNaiveBayes main BayesClassifier::_createNaiveBayesStructure
-BayesClassifier::_createNaiveBayesStructure main BayesNet::createNode DataSet::getNumAttributes
+main BayesClassifier::setBayesType BayesClassifier::reset BayesClassifier::train Classifier::test
+BayesClassifier::setBayesType BayesClassifier::reset
+BayesClassifier::reset
+BayesClassifier::train BayesClassifier::reset BayesClassifier::_trainNaiveBayes BayesClassifier::_trainTAN BayesClassifier::_trainSparseCandidate
+BayesClassifier::_trainNaiveBayes BayesClassifier::_createNaiveBayesStructure BayesClassifier::_learnNetParams
+BayesClassifier::_createNaiveBayesStructure BayesNet::createNode DataSet::getNumAttributes DataSet::getAttribute MLLib::BayesNet::Node::addInNode
 BayesNet::createNode BayesNet::hasNode
 BayesNet::hasNode
 DataSet::getNumAttributes
-DataSet::getAttribute
+DataSet::getAttribute DataSet::getNumAttributes
 MLLib::BayesNet::Node::addInNode
-BayesClassifier::_learnNetParams
-BayesNet::getNode
-BayesClassifier::_learnNetNodeParams
+BayesClassifier::_learnNetParams DataSet::getNumAttributes BayesNet::getNode BayesClassifier::_learnNetNodeParams
+BayesNet::getNode BayesNet::hasNode
+BayesClassifier::_learnNetNodeParams DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::initParams
 DataSet::getNumDataPoints
-DataSet::getDataPoint
-MLLib::BayesNet::Node::getCPTRowIndex
-DataPoint::getEnumValue
+DataSet::getDataPoint DataSet::getNumDataPoints
+MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::getNumValues
+DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getNumValues
 MLLib::BayesNet::Node::getAttribIndex
 MLLib::BayesNet::Node::getNumValues
 MLLib::BayesNet::Node::initParams
-BayesClassifier::_trainTAN
+BayesClassifier::_trainTAN BayesClassifier::_createNaiveBayesStructure DataSet::getNumAttributes BayesClassifier::_learnNetParams BayesNet::getNode MLLib::BayesNet::Node::getAttribIndex BayesNet::getNumNodes BayesClassifier::_computeMutualInf MLLib::BayesClassifier::Arc::getNode1 MLLib::BayesClassifier::Arc::getNode2 BayesClassifier::_buildNodeTree
 BayesNet::getNumNodes
-BayesClassifier::_computeMutualInf
+BayesClassifier::_computeMutualInf DataSet::getAttribute DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getEnumValue
 MLLib::BayesClassifier::Arc::getNode1
 MLLib::BayesClassifier::Arc::getNode2
-BayesClassifier::_buildNodeTree
-BayesClassifier::_trainSparseCandidate
-BayesClassifier::_BICInit
+BayesClassifier::_buildNodeTree MLLib::BayesNet::Node::addInNode
+BayesClassifier::_trainSparseCandidate BayesNet::createNode DataSet::getNumAttributes DataSet::getAttribute BayesClassifier::_learnNetParams BayesNet::getNode MLLib::BayesNet::Node::getAttribIndex BayesNet::getNumNodes BayesClassifier::_computeMutualInf BayesClassifier::_BICInit BayesClassifier::_BIC MLLib::BayesNet::Node::hasInNode MLLib::BayesNet::Node::getNumInNodes BayesClassifier::_computeCondMutualInf MLLib::BayesNet::Node::getInNode BayesClassifier::_BICArcAddTest BayesClassifier::_BICArcAdd
+BayesClassifier::_BICInit BayesNet::getNode DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex BayesNet::getNumNodes MLLib::BayesNet::Node::getParam BayesClassifier::_BICPenalty BayesClassifier::_BIC
 MLLib::BayesNet::Node::getParam
-BayesClassifier::_BICPenalty
+BayesClassifier::_BICPenalty BayesNet::getNode DataSet::getNumDataPoints BayesNet::getNumNodes MLLib::BayesNet::Node::getNumParams
 MLLib::BayesNet::Node::getNumParams
 BayesClassifier::_BIC
 MLLib::BayesNet::Node::hasInNode
 MLLib::BayesNet::Node::getNumInNodes
-BayesClassifier::_computeCondMutualInf
+BayesClassifier::_computeCondMutualInf DataSet::getAttribute DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getEnumValue
 MLLib::BayesNet::Node::getInNode
-BayesClassifier::_BICArcAddTest
-BayesClassifier::_BICLogLAttr
+BayesClassifier::_BICArcAddTest MLLib::BayesNet::Node::addInNode BayesClassifier::_learnNetNodeParams MLLib::BayesNet::Node::getNumValues MLLib::BayesNet::Node::initParams BayesClassifier::_BICPenalty MLLib::BayesNet::Node::getNumParams MLLib::BayesNet::Node::hasInNode BayesClassifier::_BICLogLAttr MLLib::BayesNet::Node::getCount MLLib::BayesNet::Node::removeInNode MLLib::BayesNet::Node::setCount
+BayesClassifier::_BICLogLAttr DataSet::getNumDataPoints DataSet::getDataPoint MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::getParam
 MLLib::BayesNet::Node::getCount
 MLLib::BayesNet::Node::removeInNode
 MLLib::BayesNet::Node::setCount
-BayesClassifier::_BICArcAdd
-Classifier::test
+BayesClassifier::_BICArcAdd MLLib::BayesNet::Node::addInNode BayesClassifier::_learnNetNodeParams BayesClassifier::_BICPenalty BayesClassifier::_BIC BayesClassifier::_BICLogLAttr
+Classifier::test DataSet::getAttribute DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getEnumValue DataPoint::getNumValues Classifier::classify DataPoint::getValueType DataPoint::getIntValue DataPoint::getRealValue DataSet::getDPProbability
 Classifier::classify
-DataPoint::getValueType
-DataPoint::getIntValue
-DataPoint::getRealValue
-DataSet::getDPProbability
+DataPoint::getValueType DataPoint::getNumValues
+DataPoint::getIntValue DataPoint::getNumValues
+DataPoint::getRealValue DataPoint::getNumValues
+DataSet::getDPProbability DataSet::getNumDataPoints
 
-main SVMClassifier::setKernelType SVMClassifier::setC SVMClassifier::setD SVMClassifier::setS SVMClassifier::train SVMClassifier::reset DataSet::getNumDataPoints DataSet::getDataPoint
-SVMClassifier::setKernelType main DataSet::getNumDataPoints
+main SVMClassifier::setKernelType SVMClassifier::setC SVMClassifier::setD SVMClassifier::setS SVMClassifier::train SVMClassifier::reset Classifier::test
+SVMClassifier::setKernelType
 SVMClassifier::setC
 SVMClassifier::setD
 SVMClassifier::setS
-SVMClassifier::train main SVMClassifier::reset DataSet::getNumDataPoints DataSet::getDataPoint
+SVMClassifier::train SVMClassifier::reset DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getNumValues SVMClassifier::_cacheKernels SVMClassifier::_processExample
 SVMClassifier::reset
 DataSet::getNumDataPoints
 DataSet::getDataPoint DataSet::getNumDataPoints
 DataPoint::getNumValues
-SVMClassifier::_cacheKernels
+SVMClassifier::_cacheKernels SVMClassifier::_kernel
 SVMClassifier::_kernel
-SVMClassifier::_processExample
-SVMClassifier::_error
-SVMClassifier::_query
+SVMClassifier::_processExample SVMClassifier::_error SVMClassifier::_advanceSMO
+SVMClassifier::_error SVMClassifier::_query SVMClassifier::_isBound
+SVMClassifier::_query SVMClassifier::_kernel
 SVMClassifier::_isBound
-SVMClassifier::_advanceSMO
-SVMClassifier::_updateErrorCache
-Classifier::test
+SVMClassifier::_advanceSMO SVMClassifier::_kernel SVMClassifier::_error SVMClassifier::_updateErrorCache
+SVMClassifier::_updateErrorCache SVMClassifier::_query SVMClassifier::_isBound
+Classifier::test DataSet::getNumDataPoints DataSet::getDataPoint DataPoint::getNumValues Classifier::classify DataPoint::getEnumValue DataPoint::getValueType DataSet::getAttribute DataPoint::getIntValue DataPoint::getRealValue DataSet::getDPProbability
 Classifier::classify
-DataPoint::getEnumValue
-DataPoint::getValueType
-DataSet::getAttribute
+DataPoint::getEnumValue DataPoint::getNumValues
+DataPoint::getValueType DataPoint::getNumValues
+DataSet::getAttribute DataSet::getNumAttributes
 DataSet::getNumAttributes
-DataPoint::getIntValue
-DataPoint::getRealValue
-DataSet::getDPProbability
+DataPoint::getIntValue DataPoint::getNumValues
+DataPoint::getRealValue DataPoint::getNumValues
+DataSet::getDPProbability DataSet::getNumDataPoints
 

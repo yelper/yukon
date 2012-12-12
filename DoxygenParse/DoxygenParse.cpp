@@ -130,8 +130,8 @@ vector<vector<int> > parseCallGraph(string filename, vector<string> &names)
         vector<string> line = lines[i];
         if (line[1] == "->")
         {
-            int from = boost::lexical_cast<int>(line[0].substr(4, 1)) - 1;
-            int to   = boost::lexical_cast<int>(line[2].substr(4, 1)) - 1;
+            int from = boost::lexical_cast<int>(line[0].substr(4, 2)) - 1;
+            int to   = boost::lexical_cast<int>(line[2].substr(4, 2)) - 1;
             graph[from][to] = 1;
         }
     }
