@@ -279,6 +279,7 @@ bool ARFFDataSetIO::_readEnumValues( const std::string& enumStr, DataSet::Attrib
 
 bool ARFFDataSetIO::_readDataPoint( const std::string dpStr )
 {
+	//test change
 	std::string str = dpStr;
 
 	// Replace special characters with whitespaces for easier parsing

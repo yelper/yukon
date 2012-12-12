@@ -114,6 +114,7 @@ void DataPoint::setRealValue( int index, double val )
 
 int DataPoint::getEnumValue( int index ) const
 {
+	//test change
 	mlAssert( index >= 0 && index < getNumValues() );
 	mlAssert( mVals[index].valueType == AT_Enum );
 

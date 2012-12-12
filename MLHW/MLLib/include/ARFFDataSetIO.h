@@ -15,7 +15,7 @@ class ARFFDataSetIO : public DataSetIO
 
 public:
 
-	ARFFDataSetIO( DataSet* data ) : DataSetIO(data) { }
+	ARFFDataSetIO( DataSet* data ) : DataSetIO(data) { }//test change
 	~ARFFDataSetIO() { }
 	bool read( const std::string& path );
 	bool write( const std::string& path );

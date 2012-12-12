@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-16"?>
+<yukonConfig>
+  <projectDirectory>MLHW</projectDirectory>
+  <useCases>
+    <useCase>
+      <name>Load Data Set</name>
+      <methods>
+        <method>bool MLLib\include\MLLib.h::MLLibCore::loadDataSet( const std::string& path, DataSet* data )</method>
+      </methods>
+    </useCase>
+	<useCase>
+      <name>Save Data Set</name>
+      <methods>
+        <method>bool MLLib\include\MLLib.h::MLLibCore::saveDataSet( const std::string& path, DataSet* data )</method>
+      </methods>
+    </useCase>
+	<useCase>
+      <name>Classify Data Set</name>
+      <methods>
+        <method>void MLLib\include\Classifier.h::classify( DataSet* data )</method>
+      </methods>
+    </useCase>
+  </useCases>
+</yukonConfig>
