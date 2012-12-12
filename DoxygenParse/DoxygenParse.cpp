@@ -17,6 +17,8 @@ using std::shared_ptr;
 using std::make_shared;
 using std::enable_shared_from_this;
 
+#include <boost/exception/all.hpp>
+
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/iter_find.hpp>
 #include <boost/algorithm/string/finder.hpp>
@@ -142,13 +144,13 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<fileinfo_t,
     // get a list of all code files in the codeDir, this'll involve looking at all *.cpp files
     files.clear();
     lines.clear();
-    boost::filesystem::directory_iterator end_itr;
-    for (boost::filesystem::directory_iterator i(codeDir); i != end_itr; ++i)
+    boost::filesystem::recursive_directory_iterator end_itr;
+    for (boost::filesystem::recursive_directory_iterator i(codeDir); i != end_itr; ++i)
     {
         // skip non-files (e.g. ".." or directories)
-        if (!boost::filesystem::is_regular_file(i->status()))
-            continue;
-        
+        /*if (!boost::filesystem::is_regular_file(i->status()))
+            continue;*/
+
         if (i->path().extension() == ".cpp")
             files.push_back(i->path().string());
     }
@@ -181,7 +183,8 @@ void parseFunctionHeaders(string codeDir, vector<string> &files, map<fileinfo_t,
     //                                                                           \{  match opening bracket
     // ^[^\s]+\s+[^\s]+\s*\(\s*([^\s]+\s+[^\s,]+(,\s*[^\s]+\s+[^\s,]+)*)*\s*\)\s*\{
 
-    string funcRegex = "^\\s*[^\\s]+\\s+([^\\s]+)\\s*\\(\\s*([^\\s]+\\s+[^\\s,]+(,\\s*[^\\s]+\\s+[^\\s,]+)*)*\\s*\\)\\s*";
+    //string funcRegex = "^\\s*[^\\s]+\\s+([^\\s]+)\\s*\\(\\s*([^\\s]+\\s+[^\\s,]+(,\\s*[^\\s]+\\s+[^\\s,]+)*)*\\s*\\)\\s*";
+    string funcRegex = "^\\s*[^\\s]+\\s+([^\\s]+)\\s*\\(.*";
     boost::regex funcHeader(funcRegex);
 
     string funcStart = "^[^\\s]+\\s+[^\\s]+\\s*\\(";
@@ -388,7 +391,7 @@ int main(int argc, char** argv)
         vector<string> files;
         map<fileinfo_t, string> lines;
         parseFunctionHeaders(fname, files, lines);
-
+        
         map<fileinfo_t, string>::iterator it;
         for (it = lines.begin(); it != lines.end(); it++)
         {
@@ -411,8 +414,7 @@ int main(int argc, char** argv)
     else if (func == "g")    
     {
         // assume that the call graphs are in the /html/doc directory
-        boost::filesystem::path proj(fname);
-        proj /= "doc/html";
+        boost::filesystem::path proj(fname + "/doc/html");
 
         if (!boost::filesystem::exists(proj))
         {
@@ -458,9 +460,8 @@ int main(int argc, char** argv)
             return -2;
         }
 
-        //assume that the call graphs are in the /html/doc directory
-        boost::filesystem::path proj(fname);
-        proj /= "doc/html";
+        //assume that the call graphs are in the /doc/html directory
+        boost::filesystem::path proj(fname + "/doc/html");
 
         if (!boost::filesystem::exists(proj))
         {
