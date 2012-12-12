@@ -74,3 +74,9 @@ Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttribu
 WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
 Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
 Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+No edited functions found, quitting.
+WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
+No edited functions found, quitting.
+WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
+Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue

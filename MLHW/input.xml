@@ -5,19 +5,19 @@
     <useCase>
       <name>Load Data Set</name>
       <methods>
-        <method>bool MLLib\include\MLLib.h::MLLibCore::loadDataSet( const std::string& path, DataSet* data )</method>
+        <method>MLLib\include\MLLib.h::MLLibCore::loadDataSet</method>
       </methods>
     </useCase>
 	<useCase>
       <name>Save Data Set</name>
       <methods>
-        <method>bool MLLib\include\MLLib.h::MLLibCore::saveDataSet( const std::string& path, DataSet* data )</method>
+        <method>MLLib\include\MLLib.h::MLLibCore::saveDataSet</method>
       </methods>
     </useCase>
 	<useCase>
       <name>Classify Data Set</name>
       <methods>
-        <method>void MLLib\include\Classifier.h::classify( DataSet* data )</method>
+        <method>MLLib\include\Classifier.h::classify</method>
       </methods>
     </useCase>
   </useCases>
