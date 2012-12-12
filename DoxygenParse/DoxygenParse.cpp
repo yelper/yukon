@@ -37,7 +37,7 @@ struct fileinfo_t {
     int end;
 
     bool operator<(const fileinfo_t &n) const {
-        return this->start < n.start;
+        return this->start  * this->end < n.start * n.end;
     }
 };
 
@@ -414,7 +414,7 @@ int main(int argc, char** argv)
     else if (func == "g")    
     {
         // assume that the call graphs are in the /html/doc directory
-        boost::filesystem::path proj(fname + "/doc/html");
+        boost::filesystem::path proj(fname + "\\doc\\html");
 
         if (!boost::filesystem::exists(proj))
         {
@@ -461,7 +461,7 @@ int main(int argc, char** argv)
         }
 
         //assume that the call graphs are in the /doc/html directory
-        boost::filesystem::path proj(fname + "/doc/html");
+        boost::filesystem::path proj(fname + "\\doc\\html");
 
         if (!boost::filesystem::exists(proj))
         {
