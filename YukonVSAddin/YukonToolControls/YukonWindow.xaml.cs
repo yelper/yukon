@@ -42,7 +42,10 @@ namespace YukonToolControls
             input = new YukonInput();
 
             // TODO: remove this
-            output.UseCaseNotifications.Add(new UseCaseNotification("Save Document", "FileIO::write", "FileIO.cpp", 78, "MainWindow::btnOpen_Click->FileSystem::writeFile->FileIO::write"));
+            //
+            output.UseCaseNotifications.Add(new UseCaseNotification("Load Data Set", "ARFFDataSetIO::_readDataPoint", "ARFFDataSetIO.cpp", 280, "MLLibCore::loadDataSet->ARFFDataSetIO::read->ARFFDataSetIO::_readData->ARFFDataSetIO::_readDataPoint"));
+            output.UseCaseNotifications.Add(new UseCaseNotification("Save Data Set", "DataPoint::getEnumValue", "DataPoint.cpp", 115, "MLLibCore::saveDataSet->ARFFDataSetIO::write->DataPoint::getEnumValue"));
+            output.UseCaseNotifications.Add(new UseCaseNotification("Train Bayes Net", "DataPoint::setEnumValue", "DataPoint.cpp", 115, "BayesClassifier::train->BayesClassifier::_trainTAN->BayesClassifier::_computeMutualInf->DataPoint::getEnumValue"));
             //
             /*// TODO: move this elsewhere
             ListBox lst = (ListBox)FindName("lstNotifications");
@@ -56,7 +59,7 @@ namespace YukonToolControls
 
         private void tbcYukon_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string path = input.ProjectDirectory + "yukon/input.xml";
+            string path = input.ProjectDirectory + "input.xml";
             if (loadYukonInput)
             {
                 try
@@ -91,7 +94,7 @@ namespace YukonToolControls
 
             /*Process yukon = new Process();
             yukon.StartInfo.FileName = "yukon";
-            yukon.StartInfo.Arguments = "yukon/input.xml";
+            yukon.StartInfo.Arguments = "input.xml";
             yukon.StartInfo.UseShellExecute = false;
             yukon.StartInfo.RedirectStandardOutput = true;
             try
@@ -107,23 +110,23 @@ namespace YukonToolControls
 
             try
             {
-                StreamWriter sw = new StreamWriter("yukon/output.txt");
+                StreamWriter sw = new StreamWriter("output.txt");
                 sw.Write(yukon.StandardOutput.ReadToEnd());
                 sw.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show("Error writing yukon output to yukon/output.txt. The path may be write-protected.",
+                MessageBox.Show("Error writing yukon output to output.txt. The path may be write-protected.",
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             try
             {
-                output.ReadOutput("yukon/output.txt");
+                output.ReadOutput("output.txt");
             }
             catch (Exception)
             {
-                MessageBox.Show("Error reading yukon output from yukon/output.txt.",
+                MessageBox.Show("Error reading yukon output from output.txt.",
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -288,7 +291,7 @@ namespace YukonToolControls
             input.ProjectDirectory = ((TextBox)e.Source).Text;
             char lc = input.ProjectDirectory[input.ProjectDirectory.Length-1];
             if (lc != '\\' && lc != '/')
-                input.ProjectDirectory += "/";
+                input.ProjectDirectory += "\\";
 
             loadYukonInput = true;
             RefreshControlStates();

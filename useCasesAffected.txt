@@ -1,76 +1,100 @@
-WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
-WARNING: Unable to find the edited function ARFFDataSetIO::_readDataPoint in the call graphs.
-WARNING: Unable to find the edited function BayesClassifier::getBayesNet in the call graphs.
-WARNING: Unable to find the edited function BayesNet::Node::removeAllInNodes in the call graphs.
-WARNING: Unable to find the edited function BayesNet::Node::removeInNode in the call graphs.
-WARNING: Unable to find the edited function DataPoint::addIntValue in the call graphs.
-WARNING: Unable to find the edited function DataPoint::addRealValue in the call graphs.
-WARNING: Unable to find the edited function DataSet::initAttributes in the call graphs.
-WARNING: Unable to find the edited function MLLibCore::createDataSet in the call graphs.
-WARNING: Unable to find the edited function std::vector<double> in the call graphs.
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesNet::createNode
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|main|SVMClassifier::train|SVMClassifier::_error|SVMClassifier::_query
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|main|SVMClassifier::train
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesNet::createNode
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
-Save Data Set|MLLibCore::saveDataSet
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|main|SVMClassifier::train|SVMClassifier::_error|SVMClassifier::_query
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|main|SVMClassifier::train
-WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
-No edited functions found, quitting.
-WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
-No edited functions found, quitting.
-WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
-WARNING: Unable to find the edited function BayesNet::Node::removeAllInNodes in the call graphs.
-WARNING: Unable to find the edited function BayesNet::Node::removeInNode in the call graphs.
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
-Save Data Set|MLLibCore::saveDataSet
-WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
-WARNING: Unable to find the edited function BayesNet::Node::removeAllInNodes in the call graphs.
-WARNING: Unable to find the edited function BayesNet::Node::removeInNode in the call graphs.
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
-Save Data Set|MLLibCore::saveDataSet
-WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
-WARNING: Unable to find the edited function BayesNet::Node::removeAllInNodes in the call graphs.
-WARNING: Unable to find the edited function BayesNet::Node::removeInNode in the call graphs.
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
-Save Data Set|MLLibCore::saveDataSet
-WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
-WARNING: Unable to find the edited function BayesNet::Node::removeAllInNodes in the call graphs.
-WARNING: Unable to find the edited function BayesNet::Node::removeInNode in the call graphs.
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_trainNaiveBayes|BayesClassifier::_createNaiveBayesStructure|BayesClassifier::_trainTAN
-Save Data Set|MLLibCore::saveDataSet
-WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
-No edited functions found, quitting.
-WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-WARNING: Unable to find specified function classify (use case Classify Data Set) in the call graphs.
-Load Data Set|MLLibCore::loadDataSet|ARFFDataSetIO::read|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
-Save Data Set|MLLibCore::saveDataSet|ARFFDataSetIO::write|DataSet::getNumAttributes|BayesClassifier::_trainSparseCandidate|BayesClassifier::_learnNetParams|BayesClassifier::_learnNetNodeParams|DataPoint::getEnumValue
+Unable to find use case definition file.  Aborting.
+
+Usage: DoxygenParse.exe <codeDir> <func> ...
+
+  <func> = f     Generate a mapping of line numbers in all code files to 
+                   function names, outputs a file <codeDir>/functions.txt
+             Ex: DoxygenParse U:\classes\cs706\yukon\TestProg f
+
+         = g     Generate a call graph for all *_cgraph.dot files in the
+                   <codeDir>/doc/html/ directory, default output directory of
+                   Doxygen HTML output.  Note that .dot files must be specified
+                   to be retained in the Doxygen config file.
+             Ex: DoxygenParse U:\classes\cs706\yukon\TestProg\ g
+
+         = s     Generate a shortest path mapping (if one exists) from all use
+                   cases to edited function using Dijkstra's algorithm.  Looks
+                   in <codeDir>/doc/html for call graph dot files, parses a
+                   use case definition file (see code for format), and parses
+                   a edited functions file (see code for format); outputs a
+                   list of use cases and their shortest-path edited function
+                   call graph.
+             Ex: U:\classes\cs706\yukon\TestProg\ s 
+                   U:\classes\cs706\yukon\TestProg\usecase.txt
+                   U:\classes\cs706\yukon\TestProg\edited.txt
+
+Unable to find use case definition file.  Aborting.
+
+Usage: DoxygenParse.exe <codeDir> <func> ...
+
+  <func> = f     Generate a mapping of line numbers in all code files to 
+                   function names, outputs a file <codeDir>/functions.txt
+             Ex: DoxygenParse U:\classes\cs706\yukon\TestProg f
+
+         = g     Generate a call graph for all *_cgraph.dot files in the
+                   <codeDir>/doc/html/ directory, default output directory of
+                   Doxygen HTML output.  Note that .dot files must be specified
+                   to be retained in the Doxygen config file.
+             Ex: DoxygenParse U:\classes\cs706\yukon\TestProg\ g
+
+         = s     Generate a shortest path mapping (if one exists) from all use
+                   cases to edited function using Dijkstra's algorithm.  Looks
+                   in <codeDir>/doc/html for call graph dot files, parses a
+                   use case definition file (see code for format), and parses
+                   a edited functions file (see code for format); outputs a
+                   list of use cases and their shortest-path edited function
+                   call graph.
+             Ex: U:\classes\cs706\yukon\TestProg\ s 
+                   U:\classes\cs706\yukon\TestProg\usecase.txt
+                   U:\classes\cs706\yukon\TestProg\edited.txt
+
+Unable to find use case definition file.  Aborting.
+
+Usage: DoxygenParse.exe <codeDir> <func> ...
+
+  <func> = f     Generate a mapping of line numbers in all code files to 
+                   function names, outputs a file <codeDir>/functions.txt
+             Ex: DoxygenParse U:\classes\cs706\yukon\TestProg f
+
+         = g     Generate a call graph for all *_cgraph.dot files in the
+                   <codeDir>/doc/html/ directory, default output directory of
+                   Doxygen HTML output.  Note that .dot files must be specified
+                   to be retained in the Doxygen config file.
+             Ex: DoxygenParse U:\classes\cs706\yukon\TestProg\ g
+
+         = s     Generate a shortest path mapping (if one exists) from all use
+                   cases to edited function using Dijkstra's algorithm.  Looks
+                   in <codeDir>/doc/html for call graph dot files, parses a
+                   use case definition file (see code for format), and parses
+                   a edited functions file (see code for format); outputs a
+                   list of use cases and their shortest-path edited function
+                   call graph.
+             Ex: U:\classes\cs706\yukon\TestProg\ s 
+                   U:\classes\cs706\yukon\TestProg\usecase.txt
+                   U:\classes\cs706\yukon\TestProg\edited.txt
+
+Unable to find use case definition file.  Aborting.
+
+Usage: DoxygenParse.exe <codeDir> <func> ...
+
+  <func> = f     Generate a mapping of line numbers in all code files to 
+                   function names, outputs a file <codeDir>/functions.txt
+             Ex: DoxygenParse U:\classes\cs706\yukon\TestProg f
+
+         = g     Generate a call graph for all *_cgraph.dot files in the
+                   <codeDir>/doc/html/ directory, default output directory of
+                   Doxygen HTML output.  Note that .dot files must be specified
+                   to be retained in the Doxygen config file.
+             Ex: DoxygenParse U:\classes\cs706\yukon\TestProg\ g
+
+         = s     Generate a shortest path mapping (if one exists) from all use
+                   cases to edited function using Dijkstra's algorithm.  Looks
+                   in <codeDir>/doc/html for call graph dot files, parses a
+                   use case definition file (see code for format), and parses
+                   a edited functions file (see code for format); outputs a
+                   list of use cases and their shortest-path edited function
+                   call graph.
+             Ex: U:\classes\cs706\yukon\TestProg\ s 
+                   U:\classes\cs706\yukon\TestProg\usecase.txt
+                   U:\classes\cs706\yukon\TestProg\edited.txt
+

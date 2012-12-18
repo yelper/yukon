@@ -9,9 +9,64 @@ DataPoint::getIntValue DataPoint::getNumValues
 DataPoint::getRealValue DataPoint::getNumValues
 DataPoint::getEnumValue
 
-ARFFDataSetIO::read DataSet::getNumAttributes DataSet::getAttribute
+ARFFDataSetIO::_readDataPoint ARFFDataSetIO::_skipWS DataSet::getNumAttributes DataSet::getAttribute DataPoint::addUnknownValue DataPoint::addIntValue DataPoint::addRealValue MLLib::DataSet::Attribute::getEnumAsInt DataPoint::addEnumValue
+ARFFDataSetIO::_skipWS
 DataSet::getNumAttributes
 DataSet::getAttribute DataSet::getNumAttributes
+DataPoint::addUnknownValue
+DataPoint::addIntValue
+DataPoint::addRealValue
+MLLib::DataSet::Attribute::getEnumAsInt
+DataPoint::addEnumValue
+DataSet::addDataPoint
+
+ARFFDataSetIO::_readData ARFFDataSetIO::_skipToNextStatement ARFFDataSetIO::_readAttribute DataSet::initAttributes ARFFDataSetIO::_readDataPoint
+ARFFDataSetIO::_skipToNextStatement ARFFDataSetIO::_skipWS
+ARFFDataSetIO::_skipWS
+ARFFDataSetIO::_readAttribute ARFFDataSetIO::_skipWS ARFFDataSetIO::_readEnumValues
+ARFFDataSetIO::_readEnumValues ARFFDataSetIO::_skipWS
+DataSet::initAttributes
+ARFFDataSetIO::_readDataPoint ARFFDataSetIO::_readData ARFFDataSetIO::_skipWS DataSet::getNumAttributes DataSet::getAttribute
+DataSet::getNumAttributes
+DataSet::getAttribute DataSet::getNumAttributes
+DataPoint::addUnknownValue
+DataPoint::addIntValue
+DataPoint::addRealValue
+MLLib::DataSet::Attribute::getEnumAsInt
+DataPoint::addEnumValue
+DataSet::addDataPoint
+
+ARFFDataSetIO::_skipToNextStatement ARFFDataSetIO::_skipWS
+ARFFDataSetIO::_skipWS
+
+ARFFDataSetIO::_readEnumValues ARFFDataSetIO::_skipWS
+ARFFDataSetIO::_skipWS
+
+ARFFDataSetIO::read ARFFDataSetIO::_readRelation ARFFDataSetIO::_readData
+ARFFDataSetIO::_readRelation ARFFDataSetIO::_skipToNextStatement
+ARFFDataSetIO::_skipToNextStatement ARFFDataSetIO::_skipWS
+ARFFDataSetIO::_skipWS
+ARFFDataSetIO::_readData ARFFDataSetIO::_skipToNextStatement ARFFDataSetIO::_readAttribute DataSet::initAttributes ARFFDataSetIO::_readDataPoint
+ARFFDataSetIO::_readAttribute ARFFDataSetIO::_skipWS ARFFDataSetIO::_readEnumValues
+ARFFDataSetIO::_readEnumValues ARFFDataSetIO::_skipWS
+DataSet::initAttributes
+ARFFDataSetIO::_readDataPoint ARFFDataSetIO::read ARFFDataSetIO::_skipWS
+DataSet::getNumAttributes
+DataSet::getAttribute
+DataPoint::addUnknownValue
+DataPoint::addIntValue
+DataPoint::addRealValue
+MLLib::DataSet::Attribute::getEnumAsInt
+DataPoint::addEnumValue
+DataSet::addDataPoint
+
+ARFFDataSetIO::_readRelation ARFFDataSetIO::_skipToNextStatement
+ARFFDataSetIO::_skipToNextStatement ARFFDataSetIO::_skipWS
+ARFFDataSetIO::_skipWS
+
+ARFFDataSetIO::_readAttribute ARFFDataSetIO::_skipWS ARFFDataSetIO::_readEnumValues
+ARFFDataSetIO::_skipWS
+ARFFDataSetIO::_readEnumValues ARFFDataSetIO::_skipWS
 
 MLLib::BayesClassifier::Arc::operator\< MLLib::BayesNet::Node::getAttribIndex
 MLLib::BayesNet::Node::getAttribIndex
@@ -306,6 +361,10 @@ MLLib::BayesNet::Node::removeInNode
 MLLib::BayesNet::Node::setCount
 BayesClassifier::_BICArcAdd
 
+MLLib::BayesNet::Node::_detectCycle MLLib::BayesNet::Node::getNumOutNodes MLLib::BayesNet::Node::getOutNode
+MLLib::BayesNet::Node::getNumOutNodes
+MLLib::BayesNet::Node::getOutNode
+
 MLLib::BayesNet::Node::getCPTRowIndex DataPoint::getEnumValue MLLib::BayesNet::Node::getAttribIndex MLLib::BayesNet::Node::getNumValues
 DataPoint::getEnumValue DataPoint::getNumValues
 DataPoint::getNumValues
@@ -463,10 +522,24 @@ MLLibCore::getNumDataSets
 MLLibCore::getClassifier MLLibCore::getNumClassifiers
 MLLibCore::getNumClassifiers
 
-MLLibCore::loadDataSet ARFFDataSetIO::read
-ARFFDataSetIO::read DataSet::getNumAttributes DataSet::getAttribute
+MLLibCore::loadDataSet ARFFDataSetIO::read ARFFDataSetIO::_skipWS
+ARFFDataSetIO::read MLLibCore::loadDataSet ARFFDataSetIO::_readRelation ARFFDataSetIO::_readData
+ARFFDataSetIO::_readRelation ARFFDataSetIO::_skipToNextStatement
+ARFFDataSetIO::_skipToNextStatement ARFFDataSetIO::_skipWS
+ARFFDataSetIO::_skipWS
+ARFFDataSetIO::_readData MLLibCore::loadDataSet ARFFDataSetIO::_skipToNextStatement ARFFDataSetIO::_readAttribute DataSet::initAttributes
+ARFFDataSetIO::_readAttribute ARFFDataSetIO::_skipWS ARFFDataSetIO::_readEnumValues
+ARFFDataSetIO::_readEnumValues ARFFDataSetIO::_skipWS
+DataSet::initAttributes
+ARFFDataSetIO::_readDataPoint
 DataSet::getNumAttributes
-DataSet::getAttribute DataSet::getNumAttributes
+DataSet::getAttribute
+DataPoint::addUnknownValue
+DataPoint::addIntValue
+DataPoint::addRealValue
+MLLib::DataSet::Attribute::getEnumAsInt
+DataPoint::addEnumValue
+DataSet::addDataPoint
 
 MLLibCore::findDataSetIndex MLLibCore::getNumDataSets
 MLLibCore::getNumDataSets
