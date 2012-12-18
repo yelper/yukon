@@ -1,3 +1,0 @@
-Load Data Set|MLLibincludeMLLib.h|MLLibCore::loadDataSet
-Save Data Set|MLLibincludeMLLib.h|MLLibCore::saveDataSet
-Classify Data Set|MLLibincludeClassifier.h|classify

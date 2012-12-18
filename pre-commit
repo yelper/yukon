@@ -94,7 +94,11 @@ do
 		strindex "$methodSig" "::"
 		index1=$((index+2))
 		strindex "$methodSig" "("
-		methodName=${methodSig:$index1:$index-$index1}
+		index2=$index
+		if [[ $index -lt 0 ]]; then
+			index2=${#methodSig}
+		fi
+		methodName=${methodSig:$index1:$index2-$index1}
 		strindex "$methodSig" " "
 		index1=$((index+1))
 		strindex "$methodSig" "::"
